@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "generatedAt": "2026-10-09T19:16:39Z",
+ "generatedAt": "2026-10-09T20:12:19Z",
  "catalog": {
   "id": "gamegrab-sources/catalog",
   "name": "gamegrab-sources",
@@ -182,6 +182,18 @@
      "description": "Unofficial plugin from gamegrab-sources, not part of droidtop and not affiliated with MyAbandonware or the Internet Archive. Searches MyAbandonware and the Internet Archive's software library and downloads the game you pick for DOS, Windows and other old systems.",
      "releases": [
       {
+       "version": "0.2.0-2",
+       "stream": "stable",
+       "publishedAt": "2026-10-09T20:06:25Z",
+       "manifestSha256": "7a9048c12baf47023a4707c7c3d02543c73ff23e64dc126c1c92a80d11cd7bc2",
+       "bundle": {
+        "name": "gamegrab.abandonware.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-abandonware/releases/download/v0.2.0-2/gamegrab.abandonware.droidplugin.tar.xz",
+        "size": 9652,
+        "sha256": "deeb2dfba28bfbc24026c8c51e5fca3989f212d7beca2cb7c018d1727187bf09"
+       }
+      },
+      {
        "version": "0.1.0-1",
        "stream": "stable",
        "publishedAt": "2026-10-09T19:11:57Z",
@@ -200,6 +212,18 @@
      "label": "BIOS and firmware",
      "description": "Unofficial plugin from gamegrab-sources, not part of droidtop. Finds the BIOS, firmware and key files your emulators ask for and downloads them from retrobios on GitHub and the Internet Archive, or from addresses you add.",
      "releases": [
+      {
+       "version": "0.2.0-2",
+       "stream": "stable",
+       "publishedAt": "2026-10-09T20:06:18Z",
+       "manifestSha256": "6e52a7d82861f3b32088c12a6d13a44985050035b8e86e1b4c83368ef30f3be8",
+       "bundle": {
+        "name": "gamegrab.bios.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-bios/releases/download/v0.2.0-2/gamegrab.bios.droidplugin.tar.xz",
+        "size": 43220,
+        "sha256": "8404b56b0e690cc86c446e6a93362bd0d125f928a5101d7aeafe8cc2432c6d1c"
+       }
+      },
       {
        "version": "0.1.0-1",
        "stream": "stable",
@@ -287,6 +311,18 @@
      "description": "Unofficial plugin from gamegrab-sources, not part of droidtop and not affiliated with LewdCorner. Finds LewdCorner games, links your games to their threads, tells you when a new version is out, and downloads them into your game folders with your LewdCorner session.",
      "releases": [
       {
+       "version": "0.2.0-2",
+       "stream": "stable",
+       "publishedAt": "2026-10-09T20:09:54Z",
+       "manifestSha256": "e471f1949fbba761e61505bf30b0cfce35303757cb716fe38fef6bb5d90084b7",
+       "bundle": {
+        "name": "gamegrab.lewdcorner.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-lewdcorner/releases/download/v0.2.0-2/gamegrab.lewdcorner.droidplugin.tar.xz",
+        "size": 13688,
+        "sha256": "02b10a15c675da3fe1ab741c8f1e1e8802d85124ec296539b6a00bf1dcd46042"
+       }
+      },
+      {
        "version": "0.1.0-1",
        "stream": "stable",
        "publishedAt": "2026-10-09T19:15:23Z",
@@ -306,6 +342,18 @@
      "description": "Unofficial plugin from gamegrab-sources, not part of droidtop and not affiliated with Nyaa or Sukebei. Searches the games categories of Nyaa (and Sukebei, if you turn it on) and hands a torrent you pick to a torrent app you have installed; droidtop has no torrent client.",
      "releases": [
       {
+       "version": "0.2.0-3",
+       "stream": "stable",
+       "publishedAt": "2026-10-09T20:09:30Z",
+       "manifestSha256": "eee28db412ea15d0f35545f13e10079bd59e5eddd115b383088db6f42b23f7b4",
+       "bundle": {
+        "name": "gamegrab.nyaa.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-nyaa/releases/download/v0.2.0-3/gamegrab.nyaa.droidplugin.tar.xz",
+        "size": 12144,
+        "sha256": "ed648fb7a2cd1ee6bc5cf394f0f5ffd6544f44b0594b21d08d354e82c42cd2b7"
+       }
+      },
+      {
        "version": "0.1.1-2",
        "stream": "stable",
        "publishedAt": "2026-10-09T19:09:55Z",
@@ -324,6 +372,18 @@
      "label": "Repacks",
      "description": "Unofficial plugin from gamegrab-sources, not part of droidtop and not affiliated with FitGirl, DODI or ElAmigos. Finds their releases, tells you when a release you linked to a game has a new version, hands torrents to a torrent app you have installed (droidtop has no torrent client) and downloads direct links into your game folders.",
      "releases": [
+      {
+       "version": "0.2.0-2",
+       "stream": "stable",
+       "publishedAt": "2026-10-09T20:09:44Z",
+       "manifestSha256": "5c9e38fb221afbb391be70f23b3169c2fb645537a47fa54598763d141d283a02",
+       "bundle": {
+        "name": "gamegrab.repacks.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-repacks/releases/download/v0.2.0-2/gamegrab.repacks.droidplugin.tar.xz",
+        "size": 16796,
+        "sha256": "511188e04e3d01453189a0f3bd10e58d5306abc8db37bd0d25c556f07da72a89"
+       }
+      },
       {
        "version": "0.1.0-1",
        "stream": "stable",
