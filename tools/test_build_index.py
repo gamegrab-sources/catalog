@@ -73,6 +73,8 @@ def main():
           == b"droidtop-plugin-cert-v1\nid:a/b#0\nplugins:gamegrab.f95\nkey:SPKI\nnotBefore:1\nnotAfter:2\n", "certificate bytes match droidtop's")
     check(build_index.revocations_signed_bytes(3, ["b#1", "a#0"], ["AB" * 32])
           == ("droidtop-plugin-revocations-v1\nsequence:3\ncert:a#0\ncert:b#1\nkey:" + "ab" * 32 + "\n").encode(), "revocation bytes match droidtop's")
+    check(build_index.catalog_cert_signed_bytes("o/c#0", ["o/c"], "SPKI", 1, 2)
+          == b"droidtop-catalog-cert-v1\nid:o/c#0\ncatalogs:o/c\nkey:SPKI\nnotBefore:1\nnotAfter:2\n", "catalog certificate bytes match droidtop's")
     check(build_index.body(good) == build_index.body(dict(good, generatedAt="later")), "generatedAt alone is not a change")
     check(json.loads(build_index.dump(good)) == good, "the index round-trips")
     try:

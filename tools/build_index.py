@@ -55,6 +55,8 @@ INDEX = ROOT / "index.json"
 README = ROOT / "README.md"
 REVOCATIONS = ROOT / "revocations.json"
 MASTER_KEY = ROOT / "catalog-master-key.json"
+INDEX_SIGNATURE = ROOT / "index.json.sig"
+INDEX_CERT = ROOT / "index.cert"
 
 SCHEMA_VERSION = 1
 ALGORITHM = "SHA256withECDSA"
@@ -62,6 +64,7 @@ KEY_FILE = "droidtop-plugin-key.json"
 CERT_FILE = "origin.cert"
 CERT_PREFIX = "droidtop-plugin-cert-v1"
 REVOCATIONS_PREFIX = "droidtop-plugin-revocations-v1"
+CATALOG_CERT_PREFIX = "droidtop-catalog-cert-v1"
 BUNDLE_SUFFIX = ".droidplugin.tar.xz"
 MAX_BUNDLES_PER_RELEASE = 8
 MAX_BUNDLE_BYTES = 512 * 1024 * 1024
@@ -530,7 +533,45 @@ def check_static(config):
     if config["disclaimer"]["text"] not in readme:
         problems.append("README.md does not carry the disclaimer text from catalog.json word for word")
     problems += check_revocations(config)
+    problems += check_signature(config)
     return problems
+
+
+def catalog_cert_signed_bytes(cert_id, catalogs, spki_b64, not_before, not_after):
+    """What the master signs in index.cert (droidtop's CatalogSignature.signedBytes)."""
+    return (CATALOG_CERT_PREFIX + "\n" + "id:" + cert_id + "\n" + "catalogs:" + ",".join(catalogs) + "\n"
+            + "key:" + spki_b64 + "\n" + "notBefore:" + str(not_before) + "\n" + "notAfter:" + str(not_after) + "\n").encode("utf-8")
+
+
+def check_signature(config):
+    """index.json.sig and index.cert, when published, checked as droidtop's CatalogSignature.verify checks them."""
+    if not INDEX_SIGNATURE.is_file():
+        return ["index.cert is published without index.json.sig"] if INDEX_CERT.is_file() else []
+    master = load_master(config)
+    if master is None or not INDEX_CERT.is_file():
+        return ["index.json.sig is published without index.cert or catalog-master-key.json"]
+    try:
+        cert = json.loads(INDEX_CERT.read_text(encoding="utf-8"))
+        cert_id, catalogs = cert["certId"], list(cert["catalogs"])
+        spki, not_before, not_after = cert["publicKeySpki"].strip(), int(cert["notBefore"]), int(cert["notAfter"])
+        issuer = cert["issuer"]
+    except (ValueError, KeyError, TypeError):
+        return ["index.cert is not a catalog certificate"]
+    if cert.get("formatVersion") != 1 or str(issuer.get("keySha256", "")).lower() != sha256_hex(master[1]):
+        return ["index.cert was not issued by the master in catalog-master-key.json"]
+    if not verifies(catalog_cert_signed_bytes(cert_id, catalogs, spki, not_before, not_after), str(issuer.get("signature", "")), master[1]):
+        return ["the master's signature on index.cert does not verify"]
+    if config["catalog"]["id"] not in catalogs:
+        return ["index.cert is for " + ", ".join(catalogs) + ", not " + config["catalog"]["id"]]
+    if not not_before <= int(time.time()) <= not_after:
+        return ["index.cert (" + cert_id + ") is not valid now"]
+    der = p256_der(spki, "index.cert")
+    if str(cert.get("keySha256", "")).lower() != sha256_hex(der):
+        return ["index.cert: keySha256 is not its key's"]
+    if not verifies(INDEX.read_bytes(), INDEX_SIGNATURE.read_text(encoding="ascii"), der):
+        return ["index.json.sig does not verify against the key index.cert certifies"]
+    log("index.json is signed by catalog key " + sha256_hex(der) + " (" + cert_id + "), certified by the master " + sha256_hex(master[1]))
+    return []
 
 
 def revocations_signed_bytes(sequence, cert_ids, keys):
@@ -593,7 +634,7 @@ def main():
             print("::error::" + problem, flush=True)
         if problems:
             sys.exit(1)
-        log("index.json, catalog.json, README.md and revocations.json agree")
+        log("index.json, catalog.json, README.md, revocations.json and the index signature agree")
         return
     if problems:
         for problem in problems:
