@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "generatedAt": "2026-10-09T19:13:02Z",
+ "generatedAt": "2026-10-09T19:16:39Z",
  "catalog": {
   "id": "gamegrab-sources/catalog",
   "name": "gamegrab-sources",
@@ -277,6 +277,25 @@
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.1.2-6/gamegrab.f95.droidplugin.tar.xz",
         "size": 962380,
         "sha256": "017b18583afa6e5c622f7d90817716fe350758e6be7dc01187c4505e92c485d3"
+       }
+      }
+     ]
+    },
+    {
+     "id": "gamegrab.lewdcorner",
+     "label": "LewdCorner",
+     "description": "Unofficial plugin from gamegrab-sources, not part of droidtop and not affiliated with LewdCorner. Finds LewdCorner games, links your games to their threads, tells you when a new version is out, and downloads them into your game folders with your LewdCorner session.",
+     "releases": [
+      {
+       "version": "0.1.0-1",
+       "stream": "stable",
+       "publishedAt": "2026-10-09T19:15:23Z",
+       "manifestSha256": "917d51d6451a06c295970174c6ff22ba67c61de72843114f4d81be2482e2f308",
+       "bundle": {
+        "name": "gamegrab.lewdcorner.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-lewdcorner/releases/download/v0.1.0-1/gamegrab.lewdcorner.droidplugin.tar.xz",
+        "size": 12916,
+        "sha256": "5568f518b5fec4de51d5e203813a8ca217db0d1b2bb8c298aabae8dc389afcc9"
        }
       }
      ]
