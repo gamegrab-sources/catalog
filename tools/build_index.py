@@ -26,6 +26,9 @@ refuses what droidtop would refuse, so the index does not offer it.
 Usage
   build_index.py --build   rebuild index.json from the repositories
   build_index.py --check   check the committed files, no network
+  build_index.py --check-signature
+                           verify index.json.sig and index.cert as droidtop does; the
+                           workflow runs it after signing, on the files it publishes
 
 Once catalog-master-key.json exists the `catalog` block names the master as
 `key` and the organisation's `origin`; droidtop trusts it on first use when the
@@ -533,7 +536,6 @@ def check_static(config):
     if config["disclaimer"]["text"] not in readme:
         problems.append("README.md does not carry the disclaimer text from catalog.json word for word")
     problems += check_revocations(config)
-    problems += check_signature(config)
     return problems
 
 
@@ -623,9 +625,19 @@ def main():
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--build", action="store_true")
     mode.add_argument("--check", action="store_true")
+    mode.add_argument("--check-signature", action="store_true")
     args = parser.parse_args()
     config = load_config()
     previous = json.loads(INDEX.read_text(encoding="utf-8")) if INDEX.is_file() else None
+    if args.check_signature:
+        problems = check_signature(config)
+        for problem in problems:
+            print("::error::" + problem, flush=True)
+        if problems:
+            sys.exit(1)
+        if not INDEX_SIGNATURE.is_file():
+            log("index.json is published unsigned")
+        return
     problems = check_static(config)
     if args.check:
         if previous is not None:
@@ -634,7 +646,7 @@ def main():
             print("::error::" + problem, flush=True)
         if problems:
             sys.exit(1)
-        log("index.json, catalog.json, README.md, revocations.json and the index signature agree")
+        log("index.json, catalog.json, README.md and revocations.json agree")
         return
     if problems:
         for problem in problems:

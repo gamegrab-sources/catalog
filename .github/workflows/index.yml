@@ -67,6 +67,11 @@ jobs:
             git rm -q --ignore-unmatch index.json.sig index.cert
           fi
 
+      # The committed signature belongs to the previous index until the step above replaces it, so the
+      # signature is checked here, on exactly what is about to be published, and never committed if it fails.
+      - name: Verify the signature as droidtop does
+        run: python3 tools/build_index.py --check-signature
+
       - name: Commit it when it changed
         run: |
           set -euo pipefail

@@ -1,14 +1,14 @@
 # Changelog
 
-## 1.2.0 (unreleased)
+## 1.2.0 (2026-10-09)
 
 - The index is signed: `index.json.sig` by the catalog key (sha256
   e4f40764ad89f15999f68aec61b766abe4ab65e63c1bc5283b5f0420d4a33abb) and `index.cert`
   (`gamegrab-sources/catalog#catalog0`), issued by the organisation's master, from the
   `CATALOG_SIGNING_KEY` and `CATALOG_SIGNING_CERT` secrets.
-- `build_index.py --check` verifies the published signature as droidtop does (the master's
-  signature on the certificate, the catalog id, the validity window, the index signature), so every
-  push checks it.
+- `build_index.py --check-signature` verifies the signature as droidtop does (the master's
+  signature on the certificate, the catalog id, the validity window, the index signature). The
+  workflow runs it after signing, on the files it is about to publish.
 
 ## 1.1.0 (2026-10-08)
 
