@@ -1,0 +1,13 @@
+{
+  "organisation": "gamegrab-sources",
+  "catalog": {
+    "id": "gamegrab-sources/catalog",
+    "name": "gamegrab-sources",
+    "homepage": "https://github.com/gamegrab-sources/catalog",
+    "trust": "unofficial"
+  },
+  "disclaimer": {
+    "version": 1,
+    "text": "This catalog is unofficial. It is not part of droidtop, and the droidtop project does not make, review or endorse it or the plugins it lists. The plugins listed here may enable access to content from unofficial sources. The catalog and its plugins are provided as is, without warranty of any kind. The maintainers are not responsible for how unofficial plugins are used, or for any content reached through them. You are responsible for complying with the law where you live and with the terms of the sites and services involved. Takedown requests and other concerns: https://github.com/gamegrab-sources/catalog/issues"
+  }
+}
