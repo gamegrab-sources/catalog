@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "generatedAt": "2026-10-09T04:15:58Z",
+ "generatedAt": "2026-10-09T06:21:45Z",
  "catalog": {
   "id": "gamegrab-sources/catalog",
   "name": "gamegrab-sources",
@@ -179,8 +179,44 @@
     {
      "id": "gamegrab.f95",
      "label": "F95zone",
-     "description": "Unofficial plugin from gamegrab-sources, not part of droidtop and not affiliated with F95zone or F95Checker. Links your games to their F95zone threads and tells you when a new version is out.",
+     "description": "Unofficial plugin from gamegrab-sources, not part of droidtop and not affiliated with F95zone or F95Checker. Finds F95zone games, links your games to their threads, tells you when a new version is out, and downloads them into your game folders.",
      "releases": [
+      {
+       "version": "0.3.1-17",
+       "stream": "stable",
+       "publishedAt": "2026-10-09T05:57:05Z",
+       "manifestSha256": "de443079fbbc721e4f758c789b5c5854a84951455af6709a96eba671a578fb08",
+       "bundle": {
+        "name": "gamegrab.f95.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.3.1-17/gamegrab.f95.droidplugin.tar.xz",
+        "size": 1020324,
+        "sha256": "9640b2f9dd957a9cde149275065adf3b1a21b5a8878590e208e31cf40cf1f742"
+       }
+      },
+      {
+       "version": "0.3.0-15",
+       "stream": "stable",
+       "publishedAt": "2026-10-09T05:30:08Z",
+       "manifestSha256": "cfc03fbb01def1a8f6d27ec34dbd12b5f0e42832b19119bce7430b5763e4ca40",
+       "bundle": {
+        "name": "gamegrab.f95.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.3.0-15/gamegrab.f95.droidplugin.tar.xz",
+        "size": 1018640,
+        "sha256": "c28c9e50ea793d66e426975095066791215707af6d39194519e4d064f5e127c4"
+       }
+      },
+      {
+       "version": "0.2.0-11",
+       "stream": "stable",
+       "publishedAt": "2026-10-09T05:06:48Z",
+       "manifestSha256": "ec896ad880143f2c89355c29fbf7f5527edc71dcae6680a0690ce144cc51d751",
+       "bundle": {
+        "name": "gamegrab.f95.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.2.0-11/gamegrab.f95.droidplugin.tar.xz",
+        "size": 1015900,
+        "sha256": "4a2ab4701be9c426d8eb553ed5c0bf19cc2cb9c93ca11b0d2d604a08e21eb7a0"
+       }
+      },
       {
        "version": "0.1.2-6",
        "stream": "stable",
