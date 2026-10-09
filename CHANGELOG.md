@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.0 (2026-10-08)
+
+- The organisation's plugin master is published (`catalog-master-key.json`, origin `gamegrab`)
+  and named in the index's `catalog` block (`key`, `origin`).
+- Certified bundles: a bundle carrying `origin.cert` issued by the master is listed under origin
+  `gamegrab` after its certificate and signature are checked. Independent bundles (a committed
+  `droidtop-plugin-key.json`) are listed as before.
+- `revocations.json` is droidtop's plugin revocation list signed by the master; the workflow signs
+  only the index now.
+
 ## 1.0.0 (2026-10-08)
 
 - The catalog: `index.json` in droidtop's plugin catalog format (schema 1) with the `catalog` and

@@ -1,6 +1,6 @@
 # Rebuilds index.json from the releases of every plugin repository in the gamegrab-sources
-# organisation (tools/build_index.py), signs it and revocations.json when the
-# CATALOG_SIGNING_KEY and CATALOG_SIGNING_CERT secrets exist (tools/sign_index.sh), and commits
+# organisation (tools/build_index.py), signs it when the CATALOG_SIGNING_KEY and
+# CATALOG_SIGNING_CERT secrets exist (tools/sign_index.sh), and commits
 # the result to main, where droidtop reads it:
 #   https://raw.githubusercontent.com/gamegrab-sources/catalog/main/index.json
 name: Catalog index
@@ -52,16 +52,9 @@ jobs:
       - name: Rebuild the index
         env:
           GH_TOKEN: ${{ github.token }}
-          # "true" once both signing secrets exist: the index then names the catalog master's key.
-          CATALOG_SIGNED: ${{ secrets.CATALOG_SIGNING_KEY != '' && secrets.CATALOG_SIGNING_CERT != '' }}
-        run: |
-          if [ "$CATALOG_SIGNED" = "true" ]; then
-            python3 tools/build_index.py --build --signed
-          else
-            python3 tools/build_index.py --build
-          fi
+        run: python3 tools/build_index.py --build
 
-      - name: Sign the index and the revocation list
+      - name: Sign the index
         env:
           CATALOG_SIGNING_KEY: ${{ secrets.CATALOG_SIGNING_KEY }}
           CATALOG_SIGNING_CERT: ${{ secrets.CATALOG_SIGNING_CERT }}
@@ -71,14 +64,14 @@ jobs:
           else
             echo "No CATALOG_SIGNING_KEY/CATALOG_SIGNING_CERT secrets: the index is published unsigned." | tee -a "$GITHUB_STEP_SUMMARY"
             # An unsigned index must not sit beside a signature of an older one.
-            git rm -q --ignore-unmatch index.json.sig revocations.json.sig index.cert
+            git rm -q --ignore-unmatch index.json.sig index.cert
           fi
 
       - name: Commit it when it changed
         run: |
           set -euo pipefail
           # Signature files exist only when the index was signed; their removal is already staged otherwise.
-          git add -- index.json $(ls index.json.sig revocations.json.sig index.cert 2>/dev/null || true)
+          git add -- index.json $(ls index.json.sig index.cert 2>/dev/null || true)
           if git diff --cached --quiet; then
             echo "Nothing to commit."
             exit 0

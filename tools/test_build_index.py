@@ -22,7 +22,7 @@ def sample(config):
     return {
         "schemaVersion": 1,
         "generatedAt": "2026-10-08T00:00:00Z",
-        "catalog": dict(config["catalog"]),
+        "catalog": {k: v for k, v in config["catalog"].items() if k != "origin"},
         "disclaimer": dict(config["disclaimer"]),
         "origins": [{
             "origin": "acme",
@@ -65,6 +65,14 @@ def main():
         change(bad)
         check(build_index.check_document(bad, config) != [], what)
 
+    named = copy.deepcopy(good)
+    named["catalog"]["origin"] = config["catalog"]["origin"]
+    check(build_index.check_document(named, config) != [], "an origin without its master key is refused")
+    check(build_index.covers(["gamegrab.*"], "gamegrab.f95") and not build_index.covers(["gamegrab.*"], "gamegrab"), "a namespace covers ids under it, not itself")
+    check(build_index.cert_signed_bytes("a/b#0", ["gamegrab.f95"], "SPKI", 1, 2)
+          == b"droidtop-plugin-cert-v1\nid:a/b#0\nplugins:gamegrab.f95\nkey:SPKI\nnotBefore:1\nnotAfter:2\n", "certificate bytes match droidtop's")
+    check(build_index.revocations_signed_bytes(3, ["b#1", "a#0"], ["AB" * 32])
+          == ("droidtop-plugin-revocations-v1\nsequence:3\ncert:a#0\ncert:b#1\nkey:" + "ab" * 32 + "\n").encode(), "revocation bytes match droidtop's")
     check(build_index.body(good) == build_index.body(dict(good, generatedAt="later")), "generatedAt alone is not a change")
     check(json.loads(build_index.dump(good)) == good, "the index round-trips")
     try:

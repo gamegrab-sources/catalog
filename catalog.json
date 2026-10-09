@@ -4,7 +4,8 @@
     "id": "gamegrab-sources/catalog",
     "name": "gamegrab-sources",
     "homepage": "https://github.com/gamegrab-sources/catalog",
-    "trust": "unofficial"
+    "trust": "unofficial",
+    "origin": "gamegrab"
   },
   "disclaimer": {
     "version": 1,

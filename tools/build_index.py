@@ -7,27 +7,29 @@ droidtop shows before it lists anything from a catalog that is not its own:
 `catalog` (id, name, homepage, trust) and `disclaimer` (version, text). README.md
 documents the whole format.
 
-What enters the index:
-  * every public, unarchived repository of the organisation that commits a
-    droidtop-plugin-key.json at the root of its default branch (the origin id
-    and P-256 key its bundles are signed with);
-  * from each of its releases, every *.droidplugin.tar.xz asset whose
-    manifest.json is signed by that key (manifest.sig), names that origin and
-    an id under it. A prerelease is the "testing" stream, anything else
-    "stable".
+What enters the index, from every public, unarchived repository of the
+organisation, every *.droidplugin.tar.xz release asset that is either
+  * certified: it carries origin.cert, a plugin certificate issued by the
+    organisation's plugin master (catalog-master-key.json, public) for its id,
+    its manifest.sig verifies against the certified key, and it is under the
+    organisation's own origin (catalog.json `catalog.origin`, "gamegrab").
+    That origin is listed under the master's key; or
+  * independent: the repository commits a droidtop-plugin-key.json (origin id
+    and P-256 key) at the root of its default branch, and the manifest is
+    signed by that key and is under that origin.
+A prerelease is the "testing" stream, anything else "stable".
 
 Nothing a repository says is trusted for more than display: droidtop verifies
 each bundle's signature and every payload hash again on the device. This script
 refuses what droidtop would refuse, so the index does not offer it.
 
 Usage
-  build_index.py --build [--signed]   rebuild index.json from the repositories
-  build_index.py --check              check the committed files, no network
+  build_index.py --build   rebuild index.json from the repositories
+  build_index.py --check   check the committed files, no network
 
---signed puts the catalog master's public key (catalog-master-key.json) in the
-`catalog` block. It is passed only when the workflow is about to sign the index
-(tools/sign_index.sh): an index that names a key must carry a valid signature,
-or droidtop refuses it.
+Once catalog-master-key.json exists the `catalog` block names the master as
+`key` and the organisation's `origin`; droidtop trusts it on first use when the
+person accepts the catalog. Signing the index (tools/sign_index.sh) is separate.
 """
 
 import argparse
@@ -57,6 +59,9 @@ MASTER_KEY = ROOT / "catalog-master-key.json"
 SCHEMA_VERSION = 1
 ALGORITHM = "SHA256withECDSA"
 KEY_FILE = "droidtop-plugin-key.json"
+CERT_FILE = "origin.cert"
+CERT_PREFIX = "droidtop-plugin-cert-v1"
+REVOCATIONS_PREFIX = "droidtop-plugin-revocations-v1"
 BUNDLE_SUFFIX = ".droidplugin.tar.xz"
 MAX_BUNDLES_PER_RELEASE = 8
 MAX_BUNDLE_BYTES = 512 * 1024 * 1024
@@ -226,32 +231,83 @@ def published_key(raw, repo):
 
 
 def manifest_of(bundle, what):
-    """manifest.json bytes and manifest.sig text from a .droidplugin.tar.xz."""
+    """manifest.json bytes, manifest.sig text and origin.cert text (or None) from a .droidplugin.tar.xz."""
+    wanted = ("manifest.json", "manifest.sig", CERT_FILE)
     try:
         with tarfile.open(fileobj=io.BytesIO(bundle), mode="r:xz") as archive:
             found = {}
             for member in archive:
-                if member.name in ("manifest.json", "manifest.sig") and member.isfile() and member.size <= 1024 * 1024:
+                if member.name in wanted and member.isfile() and member.size <= 1024 * 1024:
                     found[member.name] = archive.extractfile(member).read()
-                if len(found) == 2:
-                    break
     except (tarfile.TarError, EOFError, OSError) as error:
         raise Rejected(what + ": not a readable tar.xz (" + str(error) + ")")
     if "manifest.json" not in found or "manifest.sig" not in found:
         raise Rejected(what + ": no manifest.json and manifest.sig at the top of the bundle")
-    return found["manifest.json"], found["manifest.sig"].decode("ascii", "replace")
+    cert = found.get(CERT_FILE)
+    return found["manifest.json"], found["manifest.sig"].decode("ascii", "replace"), cert.decode("utf-8", "replace") if cert else None
 
 
-def release_entry(release, asset, bundle, origin, der):
+def cert_signed_bytes(cert_id, plugin_ids, spki_b64, not_before, not_after):
+    """What a plugin master signs (droidtop's PluginCertificates.signedBytes; plugin-key-provision builds the same)."""
+    return (CERT_PREFIX + "\n" + "id:" + cert_id + "\n" + "plugins:" + ",".join(plugin_ids) + "\n"
+            + "key:" + spki_b64 + "\n" + "notBefore:" + str(not_before) + "\n" + "notAfter:" + str(not_after) + "\n").encode("utf-8")
+
+
+def covers(plugin_ids, plugin_id):
+    for entry in plugin_ids:
+        if entry.endswith(".*"):
+            prefix = entry[:-1]
+            if plugin_id.startswith(prefix) and len(plugin_id) > len(prefix):
+                return True
+        elif entry == plugin_id:
+            return True
+    return False
+
+
+def certified_key(cert_text, master_der, plugin_id, what):
+    """The repository key origin.cert certifies for plugin_id under the organisation's master, checked as droidtop checks it."""
+    try:
+        cert = json.loads(cert_text)
+        cert_id, plugin_ids = cert["certId"], list(cert["pluginIds"])
+        spki, not_before, not_after = cert["publicKeySpki"].strip(), int(cert["notBefore"]), int(cert["notAfter"])
+        issuer = cert["issuer"]
+    except (ValueError, KeyError, TypeError):
+        raise Rejected(what + ": " + CERT_FILE + " is not a plugin certificate")
+    if cert.get("formatVersion") != 1 or str(issuer.get("keySha256", "")).lower() != sha256_hex(master_der):
+        raise Rejected(what + ": " + CERT_FILE + " was not issued by the organisation's master")
+    if not verifies(cert_signed_bytes(cert_id, plugin_ids, spki, not_before, not_after), str(issuer.get("signature", "")), master_der):
+        raise Rejected(what + ": the master's signature on " + CERT_FILE + " does not verify")
+    der = p256_der(spki, what + " certified key")
+    if str(cert.get("keySha256", "")).lower() != sha256_hex(der):
+        raise Rejected(what + ": the certificate's keySha256 is not its key's")
+    if not covers(plugin_ids, plugin_id):
+        raise Rejected(what + ": the certificate is for " + ", ".join(plugin_ids) + ", not " + plugin_id)
+    if not not_before <= int(time.time()) <= not_after:
+        raise Rejected(what + ": the certificate " + cert_id + " is not valid now")
+    return der
+
+
+def release_entry(release, asset, bundle, origin_of_key, master):
+    """origin_of_key: the repository's committed (origin, der), or None. master: the organisation's (origin, der), or None."""
     what = release["tag_name"] + "/" + asset["name"]
-    manifest_bytes, signature = manifest_of(bundle, what)
-    if not verifies(manifest_bytes, signature, der):
-        raise Rejected(what + ": manifest.sig does not verify against the repository's committed key")
+    manifest_bytes, signature, cert = manifest_of(bundle, what)
     try:
         manifest = json.loads(manifest_bytes)
     except ValueError:
         raise Rejected(what + ": manifest.json is not JSON")
     plugin_id = str(manifest.get("id", ""))
+    if cert is not None:
+        if master is None:
+            raise Rejected(what + ": a certified bundle, and the catalog has no organisation master yet")
+        origin, master_der = master
+        if not verifies(manifest_bytes, signature, certified_key(cert, master_der, plugin_id, what)):
+            raise Rejected(what + ": manifest.sig does not verify against the certified key")
+    else:
+        if origin_of_key is None:
+            raise Rejected(what + ": no " + CERT_FILE + " and no committed " + KEY_FILE + " to verify it with")
+        origin, der = origin_of_key
+        if not verifies(manifest_bytes, signature, der):
+            raise Rejected(what + ": manifest.sig does not verify against the repository's committed key")
     if manifest.get("origin") != origin or plugin_id != plugin_id.lower() or not plugin_id.startswith(origin + "."):
         raise Rejected(what + ": the manifest's origin and id are not under origin " + repr(origin))
     label = str(manifest.get("label") or "").strip()
@@ -259,7 +315,7 @@ def release_entry(release, asset, bundle, origin, der):
     if not label or not version:
         raise Rejected(what + ": the manifest has no label or version")
     description = manifest.get("description")
-    return plugin_id, label, description if isinstance(description, str) and description.strip() else None, {
+    return origin, plugin_id, label, description if isinstance(description, str) and description.strip() else None, {
         "version": version,
         "stream": "testing" if release.get("prerelease") else "stable",
         "publishedAt": release.get("published_at"),
@@ -293,6 +349,8 @@ def load_config():
     catalog, disclaimer = config["catalog"], config["disclaimer"]
     if not CATALOG_ID.fullmatch(catalog["id"]) or catalog.get("trust") != "unofficial":
         raise SystemExit("catalog.json: the catalog id is malformed or its trust is not \"unofficial\"")
+    if not ORIGIN.fullmatch(catalog.get("origin", "")) or catalog["origin"] == "droidtop":
+        raise SystemExit("catalog.json: the catalog's origin is not a third-party origin id")
     if not isinstance(disclaimer.get("version"), int) or disclaimer["version"] < 1:
         raise SystemExit("catalog.json: the disclaimer version is a whole number from 1")
     text = disclaimer.get("text", "")
@@ -301,50 +359,63 @@ def load_config():
     return config
 
 
-def catalog_block(config, signed):
-    block = dict(config["catalog"])
-    if signed:
-        if not MASTER_KEY.is_file():
-            raise SystemExit("--signed needs catalog-master-key.json, the catalog master's PUBLIC key, committed beside the index")
-        master = json.loads(MASTER_KEY.read_text(encoding="utf-8"))
-        der = p256_der(master.get("publicKeySpki", ""), "catalog-master-key.json")
-        block["key"] = {
-            "formatVersion": 1,
-            "algorithm": ALGORITHM,
-            "publicKeySpki": base64.b64encode(der).decode("ascii"),
-            "keySha256": sha256_hex(der),
-        }
+def load_master(config):
+    """The organisation's plugin master (public): (origin, der, key block), or None before it exists."""
+    if not MASTER_KEY.is_file():
+        return None
+    master = json.loads(MASTER_KEY.read_text(encoding="utf-8"))
+    origin = config["catalog"]["origin"]
+    if master.get("origin") != origin:
+        raise SystemExit("catalog-master-key.json is for origin " + repr(master.get("origin")) + ", not " + repr(origin))
+    der = p256_der(master.get("publicKeySpki", ""), "catalog-master-key.json")
+    if str(master.get("keySha256", "")).lower() != sha256_hex(der):
+        raise SystemExit("catalog-master-key.json: keySha256 is not the key's")
+    spki = base64.b64encode(der).decode("ascii")
+    return origin, der, {"formatVersion": 1, "algorithm": ALGORITHM, "publicKeySpki": spki, "keySha256": sha256_hex(der)}
+
+
+def catalog_block(config, master):
+    """The catalog block: catalog.json's, with the master as `key` once it exists; `origin` only beside a key."""
+    block = {k: v for k, v in config["catalog"].items() if k != "origin"}
+    if master is not None:
+        block["origin"] = master[0]
+        block["key"] = dict(master[2])
     return block
 
 
-def build(config, previous, signed):
+def build(config, previous):
     organisation = config["organisation"]
     own_repo = config["catalog"]["homepage"].rstrip("/").split("github.com/")[-1].lower()
+    master = load_master(config)
     known = known_entries(previous)
     origins = {}
     plugin_owner = {}
     refused = []
+
+    def origin_entry(origin, key_block, repo):
+        entry = origins.get(origin)
+        if entry is None:
+            entry = origins[origin] = {"origin": origin, "trust": "third-party", "key": key_block, "plugins": {}, "repos": []}
+        elif entry["key"]["keySha256"] != key_block["keySha256"]:
+            raise Rejected(repo + ": origin " + repr(origin) + " is already listed with another key")
+        if repo not in entry["repos"]:
+            entry["repos"].append(repo)
+        return entry
+
     for repo in sorted(repositories(organisation), key=lambda r: r["full_name"].lower()):
         name = repo["full_name"]
         if name.lower() == own_repo:
             continue
+        committed = None
         raw = committed_file(name, repo["default_branch"], KEY_FILE)
-        if raw is None:
-            log(name + ": no committed " + KEY_FILE + ", not a plugin repository")
-            continue
-        try:
-            origin, key_block, der = published_key(raw, name)
-        except Rejected as reason:
-            refused.append(str(reason))
-            continue
-        entry = origins.get(origin)
-        if entry is None:
-            entry = origins[origin] = {"origin": origin, "trust": "third-party", "key": key_block, "plugins": {}, "repos": [name]}
-        elif entry["key"]["keySha256"] != key_block["keySha256"]:
-            refused.append(name + ": origin " + repr(origin) + " is already listed from " + entry["repos"][0] + " with another key")
-            continue
-        else:
-            entry["repos"].append(name)
+        if raw is not None:
+            try:
+                origin, key_block, der = published_key(raw, name)
+                if master is not None and origin == master[0]:
+                    raise Rejected(name + ": the organisation's origin " + repr(origin) + " is the master's; its plugins are certified, not signed by a committed key")
+                committed = (origin, key_block, der)
+            except Rejected as reason:
+                refused.append(str(reason))
         for release in paged("https://api.github.com/repos/" + name + "/releases?per_page=100"):
             if release.get("draft"):
                 continue
@@ -355,14 +426,25 @@ def build(config, previous, signed):
                     if asset["size"] > MAX_BUNDLE_BYTES:
                         raise Rejected(what + ": larger than " + str(MAX_BUNDLE_BYTES) + " bytes")
                     cached = known.get((asset["browser_download_url"], asset["size"], release.get("published_at")))
-                    if cached and cached[0] == origin and cached[1] == key_block["keySha256"]:
-                        _, _, plugin, listed = cached
+                    current_keys = {committed[0]: committed[1]["keySha256"]} if committed else {}
+                    if master is not None:
+                        current_keys[master[0]] = master[2]["keySha256"]
+                    if cached and current_keys.get(cached[0]) == cached[1]:
+                        origin, _, plugin, listed = cached
                         plugin_id, label, description = plugin["id"], plugin["label"], plugin.get("description")
                         release_json = dict(listed, stream="testing" if release.get("prerelease") else "stable")
                     else:
                         log("downloading " + what)
                         bundle = download(asset["browser_download_url"], MAX_BUNDLE_BYTES)
-                        plugin_id, label, description, release_json = release_entry(release, asset, bundle, origin, der)
+                        origin, plugin_id, label, description, release_json = release_entry(
+                            release, asset, bundle,
+                            (committed[0], committed[2]) if committed else None,
+                            (master[0], master[1]) if master else None,
+                        )
+                    if master is not None and origin == master[0]:
+                        entry = origin_entry(origin, dict(master[2], origin=origin), name)
+                    else:
+                        entry = origin_entry(origin, committed[1], name)
                     owner = plugin_owner.setdefault(plugin_id, name)
                     if owner != name:
                         raise Rejected(what + ": plugin " + plugin_id + " is already listed from " + owner)
@@ -389,7 +471,7 @@ def build(config, previous, signed):
     document = {
         "schemaVersion": SCHEMA_VERSION,
         "generatedAt": None,
-        "catalog": catalog_block(config, signed),
+        "catalog": catalog_block(config, master),
         "disclaimer": dict(config["disclaimer"]),
         "origins": document_origins,
     }
@@ -410,9 +492,11 @@ def check_document(document, config):
     if document.get("schemaVersion") != SCHEMA_VERSION:
         problems.append("schemaVersion is not " + str(SCHEMA_VERSION))
     catalog = document.get("catalog", {})
-    expected = dict(config["catalog"])
-    if {k: v for k, v in catalog.items() if k != "key"} != expected:
+    expected = {k: v for k, v in config["catalog"].items() if k != "origin"}
+    if {k: v for k, v in catalog.items() if k not in ("key", "origin")} != expected:
         problems.append("the catalog block differs from catalog.json")
+    if ("key" in catalog) != ("origin" in catalog) or catalog.get("origin", config["catalog"]["origin"]) != config["catalog"]["origin"]:
+        problems.append("the catalog block names its origin without its master key, or another origin")
     if document.get("disclaimer") != config["disclaimer"]:
         problems.append("the disclaimer differs from catalog.json")
     seen = set()
@@ -445,12 +529,36 @@ def check_static(config):
     readme = README.read_text(encoding="utf-8")
     if config["disclaimer"]["text"] not in readme:
         problems.append("README.md does not carry the disclaimer text from catalog.json word for word")
-    revocations = json.loads(REVOCATIONS.read_text(encoding="utf-8"))
-    if revocations.get("formatVersion") != 1 or not isinstance(revocations.get("sequence"), int) or revocations["sequence"] < 1:
-        problems.append("revocations.json needs formatVersion 1 and a sequence from 1")
-    if any(not HEX_64.fullmatch(str(k)) for k in revocations.get("keySha256", [])):
-        problems.append("revocations.json: every keySha256 is 64 lowercase hex digits")
+    problems += check_revocations(config)
     return problems
+
+
+def revocations_signed_bytes(sequence, cert_ids, keys):
+    """droidtop's PluginRevocations.signedBytes; plugin-key-provision revoke builds the same."""
+    out = REVOCATIONS_PREFIX + "\n" + "sequence:" + str(sequence) + "\n"
+    out += "".join("cert:" + c + "\n" for c in sorted(cert_ids))
+    out += "".join("key:" + k + "\n" for k in sorted(k.lower() for k in keys))
+    return out.encode("utf-8")
+
+
+def check_revocations(config):
+    """revocations.json: the placeholder (sequence 0, nothing listed, no signature, which droidtop ignores), or a list signed by the master."""
+    revocations = json.loads(REVOCATIONS.read_text(encoding="utf-8"))
+    cert_ids, keys = revocations.get("certIds", []), revocations.get("keySha256", [])
+    if revocations.get("formatVersion") != 1 or not isinstance(revocations.get("sequence"), int):
+        return ["revocations.json needs formatVersion 1 and a whole-number sequence"]
+    if any(not HEX_64.fullmatch(str(k)) for k in keys):
+        return ["revocations.json: every keySha256 is 64 lowercase hex digits"]
+    if "signature" not in revocations:
+        if revocations["sequence"] == 0 and not cert_ids and not keys:
+            return []
+        return ["revocations.json lists something but is not signed by the master (plugin-key-provision revoke)"]
+    master = load_master(config)
+    if master is None:
+        return ["revocations.json is signed, but there is no catalog-master-key.json to check it with"]
+    if not verifies(revocations_signed_bytes(revocations["sequence"], cert_ids, keys), revocations["signature"], master[1]):
+        return ["revocations.json is not signed by the master in catalog-master-key.json"]
+    return []
 
 
 def summary(document, refused, origins):
@@ -474,7 +582,6 @@ def main():
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--build", action="store_true")
     mode.add_argument("--check", action="store_true")
-    parser.add_argument("--signed", action="store_true")
     args = parser.parse_args()
     config = load_config()
     previous = json.loads(INDEX.read_text(encoding="utf-8")) if INDEX.is_file() else None
@@ -492,7 +599,7 @@ def main():
         for problem in problems:
             print("::error::" + problem, flush=True)
         sys.exit(1)
-    document, refused, origins = build(config, previous, args.signed)
+    document, refused, origins = build(config, previous)
     for reason in refused:
         warn(reason)
     problems = check_document(document, config)
