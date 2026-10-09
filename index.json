@@ -1,11 +1,18 @@
 {
  "schemaVersion": 1,
- "generatedAt": "2026-10-09T02:58:34Z",
+ "generatedAt": "2026-10-09T03:55:29Z",
  "catalog": {
   "id": "gamegrab-sources/catalog",
   "name": "gamegrab-sources",
   "homepage": "https://github.com/gamegrab-sources/catalog",
-  "trust": "unofficial"
+  "trust": "unofficial",
+  "origin": "gamegrab",
+  "key": {
+   "formatVersion": 1,
+   "algorithm": "SHA256withECDSA",
+   "publicKeySpki": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEAyGYPMOce1H+TjbDGeUJArh5ket7eRiwI9iMygAtBOlRUwOhNaVEOd/2sBv078ixEYgxxeSGLf04rSJaLavpWA==",
+   "keySha256": "1076ed8549a37166568cc5d4c92914da3b286b6bef61ed3a757650d2e20fca3f"
+  }
  },
  "disclaimer": {
   "version": 1,
