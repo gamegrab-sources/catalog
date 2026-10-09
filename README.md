@@ -154,5 +154,5 @@ commit on `main`.
 
 ## Licence
 
-The tooling and documentation in this repository are MIT licensed (`LICENSE`). Each listed plugin
+The tooling and documentation in this repository are GPL-3.0 licensed (`LICENSE`). Each listed plugin
 has its own repository and licence.
