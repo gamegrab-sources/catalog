@@ -1,0 +1,162 @@
+{
+ "schemaVersion": 1,
+ "generatedAt": "2026-10-09T02:58:34Z",
+ "catalog": {
+  "id": "gamegrab-sources/catalog",
+  "name": "gamegrab-sources",
+  "homepage": "https://github.com/gamegrab-sources/catalog",
+  "trust": "unofficial"
+ },
+ "disclaimer": {
+  "version": 1,
+  "text": "This catalog is unofficial. It is not part of droidtop, and the droidtop project does not make, review or endorse it or the plugins it lists. The plugins listed here may enable access to content from unofficial sources. The catalog and its plugins are provided as is, without warranty of any kind. The maintainers are not responsible for how unofficial plugins are used, or for any content reached through them. You are responsible for complying with the law where you live and with the terms of the sites and services involved. Takedown requests and other concerns: https://github.com/gamegrab-sources/catalog/issues"
+ },
+ "origins": [
+  {
+   "origin": "bi0shacker001",
+   "trust": "third-party",
+   "key": {
+    "formatVersion": 1,
+    "algorithm": "SHA256withECDSA",
+    "origin": "bi0shacker001",
+    "publicKeySpki": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEyYpuKowre3LuqYE+MXeMAf3ZMSVc1wbIG1mID16rfas8BaeFOFwW9kfECTuSF9ruFxRQ7Bdr++W4d0J9+kUrqA==",
+    "keySha256": "761adc602ad13c818c128966b489ac6064bffd5debd52c430e1684a94188b808"
+   },
+   "plugins": [
+    {
+     "id": "bi0shacker001.romgi-3ds-decrypt",
+     "label": "romgi (3ds-decrypt)",
+     "description": "romgi (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders. Private, personal use only.",
+     "releases": [
+      {
+       "version": "1.1.0-74",
+       "stream": "stable",
+       "publishedAt": "2026-10-08T18:18:33Z",
+       "manifestSha256": "fedc9335c978183acc29bb44565249731ee8e88009f5ed998a409d7957b0277c",
+       "bundle": {
+        "name": "bi0shacker001.romgi-3ds-decrypt.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-3ds-decrypt/bi0shacker001.romgi-3ds-decrypt.droidplugin.tar.xz",
+        "size": 5744552,
+        "sha256": "84c98b4aecae66cff85039054293f36f8c85c48b8f01128dd09c7f4ced31d192"
+       }
+      }
+     ]
+    },
+    {
+     "id": "bi0shacker001.romgi-dev",
+     "label": "romgi (dev)",
+     "description": "romgi (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders. Private, personal use only.",
+     "releases": [
+      {
+       "version": "1.1.0-72",
+       "stream": "stable",
+       "publishedAt": "2026-10-08T17:49:34Z",
+       "manifestSha256": "6ba9416a9f43f2493eba8cc9f3267c9f5e0a1193a3cdea18336a76bc18a8ac2b",
+       "bundle": {
+        "name": "bi0shacker001.romgi-dev.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-core/bi0shacker001.romgi-dev.droidplugin.tar.xz",
+        "size": 5684800,
+        "sha256": "20e63de6eb60d5b0b6fe0a87adb15adf97647765ba129d1c077fc786e1157f58"
+       }
+      }
+     ]
+    },
+    {
+     "id": "bi0shacker001.romgi-macintosh-garden",
+     "label": "romgi (macintosh-garden)",
+     "description": "romgi (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders. Private, personal use only.",
+     "releases": [
+      {
+       "version": "1.1.0-75",
+       "stream": "stable",
+       "publishedAt": "2026-10-08T18:18:11Z",
+       "manifestSha256": "a1a54301b5633df8410259cd76a0db58fbe69a75d71c5c515c7b9c5d04ae0563",
+       "bundle": {
+        "name": "bi0shacker001.romgi-macintosh-garden.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-macintosh-garden/bi0shacker001.romgi-macintosh-garden.droidplugin.tar.xz",
+        "size": 5740380,
+        "sha256": "eda617e0f32b8e9ca934f46955cca2cdf8ce894c024cdb0326dd0e9a85e4755f"
+       }
+      }
+     ]
+    },
+    {
+     "id": "bi0shacker001.romgi-main",
+     "label": "romgi (main)",
+     "description": "romgi (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders. Private, personal use only.",
+     "releases": [
+      {
+       "version": "1.1.0-73",
+       "stream": "stable",
+       "publishedAt": "2026-10-08T17:51:17Z",
+       "manifestSha256": "ab79763db9963da83018b53f019cdfdd73d99413f48140fc32e8e9b5b96b0c5f",
+       "bundle": {
+        "name": "bi0shacker001.romgi-main.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-main/bi0shacker001.romgi-main.droidplugin.tar.xz",
+        "size": 5746720,
+        "sha256": "6dfc587ead09cd206cc5b6b37c03a12b7b2d0e9ca31293c0de657e78a1e34c72"
+       }
+      }
+     ]
+    },
+    {
+     "id": "bi0shacker001.romgi-prowlarr-integration",
+     "label": "romgi (prowlarr-integration)",
+     "description": "romgi (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders. Private, personal use only.",
+     "releases": [
+      {
+       "version": "1.1.0-78",
+       "stream": "stable",
+       "publishedAt": "2026-10-08T18:18:17Z",
+       "manifestSha256": "9c02bbcfa9acb2609016605d0cfe7d01515e26c7049f00aa4052811c50bacbd5",
+       "bundle": {
+        "name": "bi0shacker001.romgi-prowlarr-integration.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-prowlarr-integration/bi0shacker001.romgi-prowlarr-integration.droidplugin.tar.xz",
+        "size": 5756964,
+        "sha256": "63dedb90900b41ba457f3f1e7469257c79c91c3c19517b2d638bbc41cb100798"
+       }
+      }
+     ]
+    },
+    {
+     "id": "bi0shacker001.romgi-ps3-license",
+     "label": "romgi (ps3-license)",
+     "description": "romgi (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders. Private, personal use only.",
+     "releases": [
+      {
+       "version": "1.1.0-76",
+       "stream": "stable",
+       "publishedAt": "2026-10-08T18:18:39Z",
+       "manifestSha256": "da3b56a3cff51ef5d75ef30583cc203fcb74dc85c44ff76be65bd19c8b6dcfe5",
+       "bundle": {
+        "name": "bi0shacker001.romgi-ps3-license.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-ps3-license/bi0shacker001.romgi-ps3-license.droidplugin.tar.xz",
+        "size": 5748140,
+        "sha256": "cd8a2c3d7a3cff1bf5643836861279c5e2ae4acbb718d6afba5e87bdf0563f75"
+       }
+      }
+     ]
+    },
+    {
+     "id": "bi0shacker001.romgi-self-hosted-db",
+     "label": "romgi (self-hosted-db)",
+     "description": "romgi (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders. Private, personal use only.",
+     "releases": [
+      {
+       "version": "1.1.0-77",
+       "stream": "stable",
+       "publishedAt": "2026-10-08T18:18:14Z",
+       "manifestSha256": "c472775474e51c3102f6de85450fa033479051c9e8478a0a4ea053960b3d6e7c",
+       "bundle": {
+        "name": "bi0shacker001.romgi-self-hosted-db.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-self-hosted-db/bi0shacker001.romgi-self-hosted-db.droidplugin.tar.xz",
+        "size": 5747060,
+        "sha256": "737e94839c44a47c50e5ba60980b41f27ed3575d80367d7d07408bccb367f891"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
