@@ -1,0 +1,15 @@
+{
+  "formatVersion": 1,
+  "id": "gamegrab-sources/catalog#catalog0",
+  "catalogs": [
+    "gamegrab-sources/catalog"
+  ],
+  "publicKeySpki": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEhhARf/oW+QFlln1HLzX413Y7F87tJUeEw6ac3gXb3rELbGjOqM63J65BAy7BdLAaA5TxhxHXG2pxUcEYaegbDA==",
+  "keySha256": "e4f40764ad89f15999f68aec61b766abe4ab65e63c1bc5283b5f0420d4a33abb",
+  "notBefore": 1791519002,
+  "notAfter": 1886127002,
+  "issuer": {
+    "keySha256": "1076ed8549a37166568cc5d4c92914da3b286b6bef61ed3a757650d2e20fca3f",
+    "signature": "MEUCIADMddE9CDbEA+a1X+wkME4c3VJ6xRhahIdW6Rjw/lIxAiEA3AR3DK1f/iyqXqnOUtljqw/M77Thtn7j3pNldIRbs20="
+  }
+}
