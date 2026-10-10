@@ -13,15 +13,31 @@ before it lists anything from this catalog.
 
 ## Adding it to droidtop
 
-Settings > Accounts and sources > Plugins > Catalogs > Add a catalog, then enter
+Open this link on the device that has droidtop (or scan the code with its camera):
 
-    https://raw.githubusercontent.com/gamegrab-sources/catalog/main/index.json
+**[Add this catalog to droidtop](https://droidtop.github.io/add-catalog?address=https%3A%2F%2Fgithub.com%2Fgamegrab-sources%2Fcatalog)**
 
-(or `https://github.com/gamegrab-sources/catalog`). droidtop fetches the index, shows the catalog's
-name, its disclaimer, its master key and the key of every origin it lists, and adds nothing until
-you accept.
+[![QR code of the link above](docs/add-catalog-qr.svg)](https://droidtop.github.io/add-catalog?address=https%3A%2F%2Fgithub.com%2Fgamegrab-sources%2Fcatalog)
+
+The page it opens shows the catalog address and an "Open in droidtop" button, with a "Copy address"
+fallback for a device where droidtop is not installed. droidtop then fetches the index, shows the
+catalog's name, its disclaimer, its master key and the key of every origin it lists, and adds nothing
+until you accept. In droidtop the same flow is Settings > Plugins > Add > More catalogs, where this
+catalog is listed to switch on, or "Read a QR code" with a screenshot of the code above, or the address
+
+    https://github.com/gamegrab-sources/catalog
+
 Plugins from it are marked **Unofficial** everywhere droidtop shows them, and each one still runs
 only after you approve it.
+
+## Browse it on the web
+
+<https://gamegrab-sources.github.io/catalog/> lists every plugin with its description, versions and
+channels, permissions in plain language, signature facts and source repository, and an "Install in
+droidtop" button on each. The page opens with this catalog's disclaimer. It is built by
+`.github/workflows/site.yml` from `index.json` with `tools/site/`, a copy of the generator in
+[Droidtop/droidtop.github.io](https://github.com/Droidtop/droidtop.github.io) (its `generator/`),
+and is published from this organisation.
 
 ## Takedown and contact
 
