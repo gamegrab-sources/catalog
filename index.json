@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "generatedAt": "2026-10-09T21:52:53Z",
+ "generatedAt": "2026-10-14T21:43:21Z",
  "catalog": {
   "id": "gamegrab-sources/catalog",
   "name": "gamegrab-sources",
@@ -31,134 +31,39 @@
    },
    "plugins": [
     {
-     "id": "bi0shacker001.romgi-3ds-decrypt",
-     "label": "romgi (3ds-decrypt)",
-     "description": "romgi (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders. Private, personal use only.",
-     "releases": [
-      {
-       "version": "1.1.0-74",
-       "stream": "stable",
-       "publishedAt": "2026-10-08T18:18:33Z",
-       "manifestSha256": "fedc9335c978183acc29bb44565249731ee8e88009f5ed998a409d7957b0277c",
-       "bundle": {
-        "name": "bi0shacker001.romgi-3ds-decrypt.droidplugin.tar.xz",
-        "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-3ds-decrypt/bi0shacker001.romgi-3ds-decrypt.droidplugin.tar.xz",
-        "size": 5744552,
-        "sha256": "84c98b4aecae66cff85039054293f36f8c85c48b8f01128dd09c7f4ced31d192"
-       }
-      }
-     ]
-    },
-    {
      "id": "bi0shacker001.romgi-dev",
-     "label": "romgi (dev)",
-     "description": "romgi (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders. Private, personal use only.",
+     "label": "romgi-bio (dev)",
+     "description": "romgi-bio (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders; romgi-bio's own screen adds BIOS and system files, PS3 licences and optional live Prowlarr and Macintosh Garden search. Unofficial (gamegrab-sources).",
      "releases": [
       {
-       "version": "1.1.0-72",
+       "version": "1.2.0-83",
        "stream": "stable",
-       "publishedAt": "2026-10-08T17:49:34Z",
-       "manifestSha256": "6ba9416a9f43f2493eba8cc9f3267c9f5e0a1193a3cdea18336a76bc18a8ac2b",
+       "publishedAt": "2026-10-14T21:38:12Z",
+       "manifestSha256": "b6c59066e354c5b35b4f0552c34af5ce74eda534229424e737f159878ed90143",
        "bundle": {
         "name": "bi0shacker001.romgi-dev.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-core/bi0shacker001.romgi-dev.droidplugin.tar.xz",
-        "size": 5684800,
-        "sha256": "20e63de6eb60d5b0b6fe0a87adb15adf97647765ba129d1c077fc786e1157f58"
-       }
-      }
-     ]
-    },
-    {
-     "id": "bi0shacker001.romgi-macintosh-garden",
-     "label": "romgi (macintosh-garden)",
-     "description": "romgi (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders. Private, personal use only.",
-     "releases": [
-      {
-       "version": "1.1.0-75",
-       "stream": "stable",
-       "publishedAt": "2026-10-08T18:18:11Z",
-       "manifestSha256": "a1a54301b5633df8410259cd76a0db58fbe69a75d71c5c515c7b9c5d04ae0563",
-       "bundle": {
-        "name": "bi0shacker001.romgi-macintosh-garden.droidplugin.tar.xz",
-        "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-macintosh-garden/bi0shacker001.romgi-macintosh-garden.droidplugin.tar.xz",
-        "size": 5740380,
-        "sha256": "eda617e0f32b8e9ca934f46955cca2cdf8ce894c024cdb0326dd0e9a85e4755f"
+        "size": 5686728,
+        "sha256": "1c3fc21cc36aacc3a14e9a6a79685732b9ced990976499e0b31f4f9df402543f"
        }
       }
      ]
     },
     {
      "id": "bi0shacker001.romgi-main",
-     "label": "romgi (main)",
-     "description": "romgi (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders. Private, personal use only.",
+     "label": "romgi-bio",
+     "description": "romgi-bio (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders; romgi-bio's own screen adds BIOS and system files, PS3 licences and optional live Prowlarr and Macintosh Garden search. Unofficial (gamegrab-sources).",
      "releases": [
       {
-       "version": "1.1.0-73",
+       "version": "1.2.0-84",
        "stream": "stable",
-       "publishedAt": "2026-10-08T17:51:17Z",
-       "manifestSha256": "ab79763db9963da83018b53f019cdfdd73d99413f48140fc32e8e9b5b96b0c5f",
+       "publishedAt": "2026-10-14T21:39:29Z",
+       "manifestSha256": "84dbb9815a6a1e9d404404e4b97a81e6f6a1b8a59b6f9e121a9efa761960ebbc",
        "bundle": {
         "name": "bi0shacker001.romgi-main.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-main/bi0shacker001.romgi-main.droidplugin.tar.xz",
-        "size": 5746720,
-        "sha256": "6dfc587ead09cd206cc5b6b37c03a12b7b2d0e9ca31293c0de657e78a1e34c72"
-       }
-      }
-     ]
-    },
-    {
-     "id": "bi0shacker001.romgi-prowlarr-integration",
-     "label": "romgi (prowlarr-integration)",
-     "description": "romgi (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders. Private, personal use only.",
-     "releases": [
-      {
-       "version": "1.1.0-78",
-       "stream": "stable",
-       "publishedAt": "2026-10-08T18:18:17Z",
-       "manifestSha256": "9c02bbcfa9acb2609016605d0cfe7d01515e26c7049f00aa4052811c50bacbd5",
-       "bundle": {
-        "name": "bi0shacker001.romgi-prowlarr-integration.droidplugin.tar.xz",
-        "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-prowlarr-integration/bi0shacker001.romgi-prowlarr-integration.droidplugin.tar.xz",
-        "size": 5756964,
-        "sha256": "63dedb90900b41ba457f3f1e7469257c79c91c3c19517b2d638bbc41cb100798"
-       }
-      }
-     ]
-    },
-    {
-     "id": "bi0shacker001.romgi-ps3-license",
-     "label": "romgi (ps3-license)",
-     "description": "romgi (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders. Private, personal use only.",
-     "releases": [
-      {
-       "version": "1.1.0-76",
-       "stream": "stable",
-       "publishedAt": "2026-10-08T18:18:39Z",
-       "manifestSha256": "da3b56a3cff51ef5d75ef30583cc203fcb74dc85c44ff76be65bd19c8b6dcfe5",
-       "bundle": {
-        "name": "bi0shacker001.romgi-ps3-license.droidplugin.tar.xz",
-        "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-ps3-license/bi0shacker001.romgi-ps3-license.droidplugin.tar.xz",
-        "size": 5748140,
-        "sha256": "cd8a2c3d7a3cff1bf5643836861279c5e2ae4acbb718d6afba5e87bdf0563f75"
-       }
-      }
-     ]
-    },
-    {
-     "id": "bi0shacker001.romgi-self-hosted-db",
-     "label": "romgi (self-hosted-db)",
-     "description": "romgi (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders. Private, personal use only.",
-     "releases": [
-      {
-       "version": "1.1.0-77",
-       "stream": "stable",
-       "publishedAt": "2026-10-08T18:18:14Z",
-       "manifestSha256": "c472775474e51c3102f6de85450fa033479051c9e8478a0a4ea053960b3d6e7c",
-       "bundle": {
-        "name": "bi0shacker001.romgi-self-hosted-db.droidplugin.tar.xz",
-        "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-self-hosted-db/bi0shacker001.romgi-self-hosted-db.droidplugin.tar.xz",
-        "size": 5747060,
-        "sha256": "737e94839c44a47c50e5ba60980b41f27ed3575d80367d7d07408bccb367f891"
+        "size": 5828624,
+        "sha256": "08ed886f544b32ae46e49f9c695e296f450babc7938de10ceb115af35d64cbc8"
        }
       }
      ]
@@ -308,8 +213,20 @@
     {
      "id": "gamegrab.lewdcorner",
      "label": "LewdCorner",
-     "description": "Unofficial plugin from gamegrab-sources, not part of droidtop and not affiliated with LewdCorner. Finds LewdCorner games, links your games to their threads, tells you when a new version is out, and downloads them into your game folders with your LewdCorner session.",
+     "description": "Finds LewdCorner games, checks your linked games for new versions, and downloads them with your LewdCorner account.",
      "releases": [
+      {
+       "version": "0.3.0-4",
+       "stream": "stable",
+       "publishedAt": "2026-10-14T21:41:51Z",
+       "manifestSha256": "34a8f2f563c65647a652a294558b5f5ed40c2891d42df5670c2a50b1de0f86db",
+       "bundle": {
+        "name": "gamegrab.lewdcorner.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-lewdcorner/releases/download/v0.3.0-4/gamegrab.lewdcorner.droidplugin.tar.xz",
+        "size": 14788,
+        "sha256": "ee15427d528457aeeca59d9669f23113dfb387c459b7a155cdf5916afec9369d"
+       }
+      },
       {
        "version": "0.2.1-3",
        "stream": "stable",
@@ -351,8 +268,32 @@
     {
      "id": "gamegrab.nyaa",
      "label": "Nyaa",
-     "description": "Unofficial plugin from gamegrab-sources, not part of droidtop and not affiliated with Nyaa or Sukebei. Searches the games categories of Nyaa (and Sukebei, if you turn it on) and hands a torrent you pick to a torrent app you have installed; droidtop has no torrent client.",
+     "description": "Searches Nyaa and Sukebei for games and opens a torrent in your torrent app.",
      "releases": [
+      {
+       "version": "0.3.0-5",
+       "stream": "stable",
+       "publishedAt": "2026-10-14T21:39:48Z",
+       "manifestSha256": "00bc1faef832d9035d33ceee2dc9eb9384b6ca379e7aab2b412074ad97869360",
+       "bundle": {
+        "name": "gamegrab.nyaa.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-nyaa/releases/download/v0.3.0-5/gamegrab.nyaa.droidplugin.tar.xz",
+        "size": 12368,
+        "sha256": "5d3ed2e651b92edb19e67ea8cb484f55d8a9cd24985c580c86fee596585b3a8a"
+       }
+      },
+      {
+       "version": "0.3.0-4",
+       "stream": "stable",
+       "publishedAt": "2026-10-14T21:39:37Z",
+       "manifestSha256": "50c87b95e854c2035dda74c2a392fda1f141f3fc3afdde117eadbc0f7347de45",
+       "bundle": {
+        "name": "gamegrab.nyaa.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-nyaa/releases/download/v0.3.0-4/gamegrab.nyaa.droidplugin.tar.xz",
+        "size": 12368,
+        "sha256": "886a0c7e8da4bf31e4fe787b9aa0b55f48620c96e5806a6449d7a8cb502232d3"
+       }
+      },
       {
        "version": "0.2.0-3",
        "stream": "stable",
@@ -382,8 +323,20 @@
     {
      "id": "gamegrab.repacks",
      "label": "Repacks",
-     "description": "Unofficial plugin from gamegrab-sources, not part of droidtop and not affiliated with FitGirl, DODI or ElAmigos. Finds their releases, tells you when a release you linked to a game has a new version, hands torrents to a torrent app you have installed (droidtop has no torrent client) and downloads direct links into your game folders.",
+     "description": "Finds FitGirl, DODI and ElAmigos releases, checks your linked games for new versions, and downloads them or opens their torrents.",
      "releases": [
+      {
+       "version": "0.3.0-3",
+       "stream": "stable",
+       "publishedAt": "2026-10-14T21:42:32Z",
+       "manifestSha256": "f4170fd9ad98705add70dedc3147c6558a501dd748689ec22d44033ec69c05e0",
+       "bundle": {
+        "name": "gamegrab.repacks.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-repacks/releases/download/v0.3.0-3/gamegrab.repacks.droidplugin.tar.xz",
+        "size": 16876,
+        "sha256": "95c1b8ac1e4bfce9d66510daa3a9dd7ec249ccca6db597620be70d5b6dc0dc3a"
+       }
+      },
       {
        "version": "0.2.0-2",
        "stream": "stable",
