@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "generatedAt": "2026-10-14T21:43:21Z",
+ "generatedAt": "2026-10-14T21:44:37Z",
  "catalog": {
   "id": "gamegrab-sources/catalog",
   "name": "gamegrab-sources",
@@ -84,8 +84,20 @@
     {
      "id": "gamegrab.abandonware",
      "label": "Abandonware",
-     "description": "Unofficial plugin from gamegrab-sources, not part of droidtop and not affiliated with MyAbandonware or the Internet Archive. Searches MyAbandonware and the Internet Archive's software library and downloads the game you pick for DOS, Windows and other old systems.",
+     "description": "Searches MyAbandonware and the Internet Archive for old DOS and Windows games and downloads the one you pick.",
      "releases": [
+      {
+       "version": "0.3.0-3",
+       "stream": "stable",
+       "publishedAt": "2026-10-14T21:43:47Z",
+       "manifestSha256": "95e0fb3938454ac97b82dee5da12610249d9b8777338a8acbd7d346016b6bea0",
+       "bundle": {
+        "name": "gamegrab.abandonware.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-abandonware/releases/download/v0.3.0-3/gamegrab.abandonware.droidplugin.tar.xz",
+        "size": 9712,
+        "sha256": "c0fa55b7a2306a0b1bbb99a188f4208a4b13ef364e7ba994737965a9889c8f2d"
+       }
+      },
       {
        "version": "0.2.0-2",
        "stream": "stable",
@@ -115,8 +127,20 @@
     {
      "id": "gamegrab.bios",
      "label": "BIOS and firmware",
-     "description": "Unofficial plugin from gamegrab-sources, not part of droidtop. Finds the BIOS, firmware and key files your emulators ask for and downloads them from retrobios on GitHub and the Internet Archive, or from addresses you add.",
+     "description": "Finds the BIOS and firmware files your emulators ask for and downloads them, checked where the source gives a checksum.",
      "releases": [
+      {
+       "version": "0.3.0-3",
+       "stream": "stable",
+       "publishedAt": "2026-10-14T21:44:27Z",
+       "manifestSha256": "44fc424e8065398fd4ef57aece3c18a5d4e9df9596911bfe843a39fde51fe016",
+       "bundle": {
+        "name": "gamegrab.bios.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-bios/releases/download/v0.3.0-3/gamegrab.bios.droidplugin.tar.xz",
+        "size": 43164,
+        "sha256": "0033a8404aabd28fe00b773918b2da78ca3f4cca439a32da2faec624b2116488"
+       }
+      },
       {
        "version": "0.2.0-2",
        "stream": "stable",
