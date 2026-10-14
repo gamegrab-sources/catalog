@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "generatedAt": "2026-10-14T21:56:34Z",
+ "generatedAt": "2026-10-14T21:59:44Z",
  "catalog": {
   "id": "gamegrab-sources/catalog",
   "name": "gamegrab-sources",
@@ -170,8 +170,20 @@
     {
      "id": "gamegrab.f95",
      "label": "F95zone",
-     "description": "Unofficial plugin from gamegrab-sources, not part of droidtop and not affiliated with F95zone or F95Checker. Finds F95zone games, links your games to their threads, tells you when a new version is out, and downloads them into your game folders.",
+     "description": "Finds F95zone games, checks your linked games for new versions, and downloads them with your F95zone account.",
      "releases": [
+      {
+       "version": "0.4.0-22",
+       "stream": "stable",
+       "publishedAt": "2026-10-14T21:58:16Z",
+       "manifestSha256": "0943e6f63a21fddcbcad61bf0a5d77c25f974e5f50e15a636020b34cf458f863",
+       "bundle": {
+        "name": "gamegrab.f95.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.4.0-22/gamegrab.f95.droidplugin.tar.xz",
+        "size": 1032176,
+        "sha256": "980275fd5453fdc5d7bac3242eb64c53d8b05391a63768fb3691fe4ab8ba46e2"
+       }
+      },
       {
        "version": "0.3.2-20",
        "stream": "stable",
