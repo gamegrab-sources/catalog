@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "generatedAt": "2026-10-14T21:44:37Z",
+ "generatedAt": "2026-10-14T21:56:34Z",
  "catalog": {
   "id": "gamegrab-sources/catalog",
   "name": "gamegrab-sources",
@@ -36,15 +36,15 @@
      "description": "romgi-bio (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders; romgi-bio's own screen adds BIOS and system files, PS3 licences and optional live Prowlarr and Macintosh Garden search. Unofficial (gamegrab-sources).",
      "releases": [
       {
-       "version": "1.2.0-83",
+       "version": "1.2.0-85",
        "stream": "stable",
-       "publishedAt": "2026-10-14T21:38:12Z",
-       "manifestSha256": "b6c59066e354c5b35b4f0552c34af5ce74eda534229424e737f159878ed90143",
+       "publishedAt": "2026-10-14T21:46:32Z",
+       "manifestSha256": "d26bfab95d88a95548e9001ccc3e0f889d86275db1f489deae6eaee2127117a9",
        "bundle": {
         "name": "bi0shacker001.romgi-dev.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-core/bi0shacker001.romgi-dev.droidplugin.tar.xz",
-        "size": 5686728,
-        "sha256": "1c3fc21cc36aacc3a14e9a6a79685732b9ced990976499e0b31f4f9df402543f"
+        "size": 5703584,
+        "sha256": "6e8b62a5cba04643887ca1a709cef08d1f67408de9b7b499606690ecbe0ebb0f"
        }
       }
      ]
