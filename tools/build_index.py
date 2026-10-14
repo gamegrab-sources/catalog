@@ -362,6 +362,9 @@ def load_config():
     text = disclaimer.get("text", "")
     if not text.strip() or len(text) > MAX_DISCLAIMER_CHARS:
         raise SystemExit("catalog.json: the disclaimer text is empty or longer than " + str(MAX_DISCLAIMER_CHARS))
+    retired = config.get("retired", {})
+    if not isinstance(retired, dict) or not all(isinstance(k, str) and isinstance(v, str) and v.strip() for k, v in retired.items()):
+        raise SystemExit("catalog.json: retired maps plugin ids to a note saying why")
     return config
 
 
@@ -394,6 +397,7 @@ def build(config, previous):
     own_repo = config["catalog"]["homepage"].rstrip("/").split("github.com/")[-1].lower()
     master = load_master(config)
     known = known_entries(previous)
+    retired = config.get("retired", {})
     origins = {}
     plugin_owner = {}
     refused = []
@@ -447,6 +451,8 @@ def build(config, previous):
                             (committed[0], committed[2]) if committed else None,
                             (master[0], master[1]) if master else None,
                         )
+                    if plugin_id in retired:
+                        raise Rejected(what + ": " + plugin_id + " is retired: " + retired[plugin_id])
                     if master is not None and origin == master[0]:
                         entry = origin_entry(origin, dict(master[2], origin=origin), name)
                     else:
@@ -490,6 +496,18 @@ def body(document):
 
 def dump(document):
     return json.dumps(document, indent=1, ensure_ascii=False) + "\n"
+
+
+def retired_listed(document, config):
+    """catalog.json `retired`: plugin ids the index must no longer list. Checked on a rebuilt index only:
+    the committed one may still list a plugin until the run that retires it rebuilds it."""
+    retired = config.get("retired", {})
+    return [
+        "retired plugin " + str(plugin.get("id")) + " is listed"
+        for origin in document.get("origins", [])
+        for plugin in origin.get("plugins", [])
+        if plugin.get("id") in retired
+    ]
 
 
 def check_document(document, config):
@@ -655,7 +673,7 @@ def main():
     document, refused, origins = build(config, previous)
     for reason in refused:
         warn(reason)
-    problems = check_document(document, config)
+    problems = check_document(document, config) + retired_listed(document, config)
     if problems:
         for problem in problems:
             print("::error::" + problem, flush=True)

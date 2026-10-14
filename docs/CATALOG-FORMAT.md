@@ -21,7 +21,9 @@ the organisation and lists each `*.droidplugin.tar.xz` release asset that is one
   today, origin `bi0shacker001`).
 
 A prerelease is listed in the `testing` stream, which droidtop does not offer; any other release
-is `stable`. Anything else is left out, with the reason in the run's summary. Two repositories
+is `stable`. A plugin id named in `catalog.json` `retired` (id -> note saying why, e.g. a variant
+merged into another plugin) is left out too, its note in the run's summary; its repository, releases
+and tags stay. Anything else is left out, with the reason in the run's summary. Two repositories
 cannot list the same origin with different keys, or the same plugin id.
 
 ## Index format

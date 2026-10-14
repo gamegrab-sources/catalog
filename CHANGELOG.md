@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.0 (2026-10-14)
+
+- `catalog.json` `retired`: plugin ids the index no longer lists, each with a note; a rebuilt
+  index that still lists one is refused. Retired: the romgi-bio branch variants
+  `bi0shacker001.romgi-3ds-decrypt`, `-macintosh-garden`, `-prowlarr-integration`, `-ps3-license`
+  and `-self-hosted-db`, merged into `bi0shacker001.romgi-main` (romgi-bio). Their repository,
+  releases and tags stay.
+
 ## 1.2.0 (2026-10-09)
 
 - The index is signed: `index.json.sig` by the catalog key (sha256

@@ -53,6 +53,10 @@ def main():
     good = sample(config)
     check(build_index.check_document(good, config) == [], "a well-formed index passes")
 
+    retiring = dict(config, retired={"acme.tool": "merged into acme.suite"})
+    check(build_index.retired_listed(good, retiring) != [], "a retired plugin in a rebuilt index is refused")
+    check(build_index.retired_listed(good, config) == [], "nothing else counts as retired")
+
     for what, change in [
         ("an official origin is refused", lambda d: d["origins"][0].update(origin="droidtop")),
         ("a plugin outside its origin is refused", lambda d: d["origins"][0]["plugins"][0].update(id="other.tool")),
