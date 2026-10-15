@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "generatedAt": "2026-10-15T15:20:02Z",
+ "generatedAt": "2026-10-15T15:26:49Z",
  "catalog": {
   "id": "gamegrab-sources/catalog",
   "name": "gamegrab-sources",
@@ -88,6 +88,25 @@
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-bios/releases/download/v0.3.2-8/gamegrab.bios.droidplugin.tar.xz",
         "size": 44192,
         "sha256": "7d7a1d2a17261d85e80914de9f1740a5a816ec75735de08ba10c31f84d014c70"
+       }
+      }
+     ]
+    },
+    {
+     "id": "gamegrab.f95",
+     "label": "F95zone",
+     "description": "Finds F95zone games, checks your linked games for new versions, and downloads them with your F95zone account.",
+     "releases": [
+      {
+       "version": "0.4.2-27",
+       "stream": "stable",
+       "publishedAt": "2026-10-15T15:25:19Z",
+       "manifestSha256": "ca75932bb192cd765fe7eb9428cf51d8133f964a1122e3e598fbb34a2d05f723",
+       "bundle": {
+        "name": "gamegrab.f95.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.4.2-27/gamegrab.f95.droidplugin.tar.xz",
+        "size": 1034024,
+        "sha256": "da8cb523b87df08ad44af5195715abd573bc5e0844c935efd62ac20d611661da"
        }
       }
      ]
@@ -181,6 +200,139 @@
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-repacks/releases/download/v0.3.1-7/gamegrab.repacks.droidplugin.tar.xz",
         "size": 17824,
         "sha256": "41cdbaa931a6b1d795cbe9f098b114e1a3b1eed35bb4b78628ffdab34044db4e"
+       }
+      }
+     ]
+    },
+    {
+     "id": "gamegrab.romgi.3ds-decrypt",
+     "label": "romgi-bio (3ds-decrypt)",
+     "description": "romgi-bio (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders; romgi-bio's own screen adds BIOS and system files, PS3 licences and optional live Prowlarr and Macintosh Garden search. Unofficial (gamegrab-sources).",
+     "releases": [
+      {
+       "version": "1.2.0-89",
+       "stream": "stable",
+       "publishedAt": "2026-10-15T15:23:38Z",
+       "manifestSha256": "bd0738d0e80d4b3e174893d9ad76bae75a4c27987dfb730cd1255879d8d604b0",
+       "bundle": {
+        "name": "gamegrab.romgi.3ds-decrypt.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-3ds-decrypt/gamegrab.romgi.3ds-decrypt.droidplugin.tar.xz",
+        "size": 5765752,
+        "sha256": "db93136206d6dc4a62568fa23555d9b0208c7a89c38be6eaecb3b7f57605aa5c"
+       }
+      }
+     ]
+    },
+    {
+     "id": "gamegrab.romgi.dev",
+     "label": "romgi-bio (dev)",
+     "description": "romgi-bio (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders; romgi-bio's own screen adds BIOS and system files, PS3 licences and optional live Prowlarr and Macintosh Garden search. Unofficial (gamegrab-sources).",
+     "releases": [
+      {
+       "version": "1.2.0-87",
+       "stream": "stable",
+       "publishedAt": "2026-10-15T15:24:32Z",
+       "manifestSha256": "70d4784c8bd1dab8fbfb868fb0cab4e4a7f15cde85b9f6e8d7ff3470aa4daf47",
+       "bundle": {
+        "name": "gamegrab.romgi.dev.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-core/gamegrab.romgi.dev.droidplugin.tar.xz",
+        "size": 5702724,
+        "sha256": "395d9c288f894a0e7cf78008f09f6813202ef09b46b6cce6802d75ad825be544"
+       }
+      }
+     ]
+    },
+    {
+     "id": "gamegrab.romgi.macintosh-garden",
+     "label": "romgi-bio (macintosh-garden)",
+     "description": "romgi-bio (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders; romgi-bio's own screen adds BIOS and system files, PS3 licences and optional live Prowlarr and Macintosh Garden search. Unofficial (gamegrab-sources).",
+     "releases": [
+      {
+       "version": "1.2.0-90",
+       "stream": "stable",
+       "publishedAt": "2026-10-15T15:23:36Z",
+       "manifestSha256": "6a23e7a5769e7a62cbacca4f39b8f18134563c2b58b6551dcfe6a93a5925c228",
+       "bundle": {
+        "name": "gamegrab.romgi.macintosh-garden.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-macintosh-garden/gamegrab.romgi.macintosh-garden.droidplugin.tar.xz",
+        "size": 5755284,
+        "sha256": "0ab5b4097f94e3ea096d09596c31785e33942a7980b0994798e51a50a0e3b902"
+       }
+      }
+     ]
+    },
+    {
+     "id": "gamegrab.romgi.main",
+     "label": "romgi-bio",
+     "description": "romgi-bio (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders; romgi-bio's own screen adds BIOS and system files, PS3 licences and optional live Prowlarr and Macintosh Garden search. Unofficial (gamegrab-sources).",
+     "releases": [
+      {
+       "version": "1.2.0-88",
+       "stream": "stable",
+       "publishedAt": "2026-10-15T15:24:09Z",
+       "manifestSha256": "866f9df3c22414fa187c4d809cb989b786bed177a91d9cef799e681312dc7bf8",
+       "bundle": {
+        "name": "gamegrab.romgi.main.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-main/gamegrab.romgi.main.droidplugin.tar.xz",
+        "size": 5841980,
+        "sha256": "1c966d20cf5765d3f1d2caa52024557affcd6373fef3ac8aab3fd64e5b3ba788"
+       }
+      }
+     ]
+    },
+    {
+     "id": "gamegrab.romgi.prowlarr-integration",
+     "label": "romgi-bio (prowlarr-integration)",
+     "description": "romgi-bio (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders; romgi-bio's own screen adds BIOS and system files, PS3 licences and optional live Prowlarr and Macintosh Garden search. Unofficial (gamegrab-sources).",
+     "releases": [
+      {
+       "version": "1.2.0-91",
+       "stream": "stable",
+       "publishedAt": "2026-10-15T15:24:37Z",
+       "manifestSha256": "6304902b497c791b0803080e87cb577d08d1f53ec3b6ef3b1a13c7423aa08416",
+       "bundle": {
+        "name": "gamegrab.romgi.prowlarr-integration.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-prowlarr-integration/gamegrab.romgi.prowlarr-integration.droidplugin.tar.xz",
+        "size": 5770876,
+        "sha256": "e6504b83ff5fcc01c4a3b2a3ed07d1511c0e549c4e561ff2dc1d731802961470"
+       }
+      }
+     ]
+    },
+    {
+     "id": "gamegrab.romgi.ps3-license",
+     "label": "romgi-bio (ps3-license)",
+     "description": "romgi-bio (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders; romgi-bio's own screen adds BIOS and system files, PS3 licences and optional live Prowlarr and Macintosh Garden search. Unofficial (gamegrab-sources).",
+     "releases": [
+      {
+       "version": "1.2.0-92",
+       "stream": "stable",
+       "publishedAt": "2026-10-15T15:25:30Z",
+       "manifestSha256": "7cb67834dd7daf05dffb830c5b1f360aefbb630b9cb02925163d3092f6affc84",
+       "bundle": {
+        "name": "gamegrab.romgi.ps3-license.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-ps3-license/gamegrab.romgi.ps3-license.droidplugin.tar.xz",
+        "size": 5764768,
+        "sha256": "adf16419842bef1bbfd8b679eacc2838c3d257b5ac8cebe86d3cfe95cf52fe3c"
+       }
+      }
+     ]
+    },
+    {
+     "id": "gamegrab.romgi.self-hosted-db",
+     "label": "romgi-bio (self-hosted-db)",
+     "description": "romgi-bio (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders; romgi-bio's own screen adds BIOS and system files, PS3 licences and optional live Prowlarr and Macintosh Garden search. Unofficial (gamegrab-sources).",
+     "releases": [
+      {
+       "version": "1.2.0-93",
+       "stream": "stable",
+       "publishedAt": "2026-10-15T15:23:54Z",
+       "manifestSha256": "370b08a6a4a383b56f06d38cb11119c0a67d6b622e7c19928d788be3696568ca",
+       "bundle": {
+        "name": "gamegrab.romgi.self-hosted-db.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-self-hosted-db/gamegrab.romgi.self-hosted-db.droidplugin.tar.xz",
+        "size": 5760836,
+        "sha256": "cabfee38c55ab22b94619fcb653fb9a842d67b802e19e54ee9b624cd6a74820a"
        }
       }
      ]
