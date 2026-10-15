@@ -27,7 +27,7 @@ def sample(config):
         "origins": [{
             "origin": "acme",
             "trust": "third-party",
-            "key": {"formatVersion": 1, "algorithm": "SHA256withECDSA", "origin": "acme",
+            "key": {"formatVersion": 1, "algorithm": "droidtop-chain-v1", "origin": "acme",
                     "publicKeySpki": "AAAA", "keySha256": "a" * 64},
             "plugins": [{
                 "id": "acme.tool",
@@ -48,7 +48,7 @@ def sample(config):
 def main():
     config = build_index.load_config()
     check(config["catalog"]["trust"] == "unofficial", "the catalog says it is unofficial")
-    check(build_index.check_static(config) == [], "README.md carries the disclaimer and revocations.json is well formed")
+    check(build_index.check_static(config) == [], "README.md carries the disclaimer")
 
     good = sample(config)
     check(build_index.check_document(good, config) == [], "a well-formed index passes")
@@ -71,21 +71,12 @@ def main():
 
     named = copy.deepcopy(good)
     named["catalog"]["origin"] = config["catalog"]["origin"]
-    check(build_index.check_document(named, config) != [], "an origin without its master key is refused")
+    check(build_index.check_document(named, config) != [], "an origin without its root key is refused")
     check(build_index.covers(["gamegrab.*"], "gamegrab.f95") and not build_index.covers(["gamegrab.*"], "gamegrab"), "a namespace covers ids under it, not itself")
-    check(build_index.cert_signed_bytes("a/b#0", ["gamegrab.f95"], "SPKI", 1, 2)
-          == b"droidtop-plugin-cert-v1\nid:a/b#0\nplugins:gamegrab.f95\nkey:SPKI\nnotBefore:1\nnotAfter:2\n", "certificate bytes match droidtop's")
-    check(build_index.revocations_signed_bytes(3, ["b#1", "a#0"], ["AB" * 32])
-          == ("droidtop-plugin-revocations-v1\nsequence:3\ncert:a#0\ncert:b#1\nkey:" + "ab" * 32 + "\n").encode(), "revocation bytes match droidtop's")
-    check(build_index.catalog_cert_signed_bytes("o/c#0", ["o/c"], "SPKI", 1, 2)
-          == b"droidtop-catalog-cert-v1\nid:o/c#0\ncatalogs:o/c\nkey:SPKI\nnotBefore:1\nnotAfter:2\n", "catalog certificate bytes match droidtop's")
     check(build_index.body(good) == build_index.body(dict(good, generatedAt="later")), "generatedAt alone is not a change")
     check(json.loads(build_index.dump(good)) == good, "the index round-trips")
-    try:
-        build_index.published_key(json.dumps({"origin": "droidtop", "key": "AAAA"}), "x/y")
-        check(False, "a repository may not claim the official origin")
-    except build_index.Rejected:
-        check(True, "a repository may not claim the official origin")
+    root = build_index.load_root(config)
+    check(root[0] == "gamegrab" and root[2]["algorithm"] == "droidtop-chain-v1" and len(root[2]["keySha256"]) == 64, "the root key block is droidtop-chain-v1")
     if FAILURES:
         sys.exit("FAILED: " + "; ".join(FAILURES))
     print("all tests passed")

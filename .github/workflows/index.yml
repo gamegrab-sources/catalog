@@ -1,6 +1,7 @@
 # Rebuilds index.json from the releases of every plugin repository in the gamegrab-sources
 # organisation (tools/build_index.py), signs it when the CATALOG_SIGNING_KEY and
-# CATALOG_SIGNING_CERT secrets exist (tools/sign_index.sh), and commits
+# CATALOG_SIGNING_CERT secrets exist (tools/sign_jws.sh writes index.json.jws, a detached JWS with
+# the catalog leaf in x5c, issued by the gamegrab root), and commits
 # the result to main, where droidtop reads it:
 #   https://raw.githubusercontent.com/gamegrab-sources/catalog/main/index.json
 name: Catalog index
@@ -18,8 +19,7 @@ on:
     branches: [main]
     paths:
       - "catalog.json"
-      - "catalog-master-key.json"
-      - "revocations.json"
+      - "gamegrab-root.pub"
       - "README.md"
       - "tools/**"
       - ".github/workflows/index.yml"
@@ -43,16 +43,19 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Signing tools
+        run: python3 -m pip install --user --break-system-packages 'cryptography>=42'
+
       - name: Test the tools
         run: python3 tools/test_build_index.py
-
-      - name: Check the committed files
-        run: python3 tools/build_index.py --check
 
       - name: Rebuild the index
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 tools/build_index.py --build
+
+      - name: Check the rebuilt files
+        run: python3 tools/build_index.py --check
 
       - name: Sign the index
         env:
@@ -60,11 +63,17 @@ jobs:
           CATALOG_SIGNING_CERT: ${{ secrets.CATALOG_SIGNING_CERT }}
         run: |
           if [ -n "$CATALOG_SIGNING_KEY" ] && [ -n "$CATALOG_SIGNING_CERT" ]; then
-            bash tools/sign_index.sh
+            # An index whose committed signature still verifies keeps it: ECDSA signatures differ on
+            # every run, so re-signing an unchanged index would commit on every run.
+            if python3 tools/build_index.py --check-signature >/dev/null 2>&1; then
+              echo "index.json: the committed signature still verifies"
+            else
+              bash tools/sign_jws.sh droidtop-catalog+jws index.json index.json.jws
+            fi
           else
             echo "No CATALOG_SIGNING_KEY/CATALOG_SIGNING_CERT secrets: the index is published unsigned." | tee -a "$GITHUB_STEP_SUMMARY"
             # An unsigned index must not sit beside a signature of an older one.
-            git rm -q --ignore-unmatch index.json.sig index.cert
+            git rm -q --ignore-unmatch index.json.jws
           fi
 
       # The committed signature belongs to the previous index until the step above replaces it, so the
@@ -75,8 +84,8 @@ jobs:
       - name: Commit it when it changed
         run: |
           set -euo pipefail
-          # Signature files exist only when the index was signed; their removal is already staged otherwise.
-          git add -- index.json $(ls index.json.sig index.cert 2>/dev/null || true)
+          # The signature file exists only when the index was signed; their removal is already staged otherwise.
+          git add -- index.json $(ls index.json.jws 2>/dev/null || true)
           if git diff --cached --quiet; then
             echo "Nothing to commit."
             exit 0

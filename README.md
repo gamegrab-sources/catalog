@@ -41,7 +41,7 @@ Open this link on the device that has droidtop, or scan the code with its camera
 
 [![QR code of the link above](docs/add-catalog-qr.svg)](https://droidtop.github.io/add-catalog?address=https%3A%2F%2Fgithub.com%2Fgamegrab-sources%2Fcatalog)
 
-The page it opens shows the catalog address and an "Open in droidtop" button, with a "Copy address" fallback. droidtop then fetches the index, shows the catalog's name, its disclaimer, its master key and the key of every origin it lists, and adds nothing until you accept.
+The page it opens shows the catalog address and an "Open in droidtop" button, with a "Copy address" fallback. droidtop then fetches the index, shows the catalog's name, its disclaimer, its root key and the key of every origin it lists, and adds nothing until you accept.
 
 Inside droidtop, the same flow is **Settings > Plugins > Add > More catalogs**, where this catalog is listed to switch on. You can also use "Read a QR code" on a screenshot of the code above, or type the address:
 
@@ -70,7 +70,7 @@ You can also browse the catalog on the web, with each plugin's permissions in pl
 - The catalog's own signing key is shown when you add it, and droidtop refuses a later copy of the index that names another one.
 - Each plugin is a signed bundle, checked on your device before it runs.
 - A plugin's certificate or key can be revoked, and droidtop then stops it on every device that has this catalog.
-- These plugins are never "Official" in droidtop. Their keys come from this organisation's own master, not droidtop's.
+- These plugins are never "Official" in droidtop. Their keys are certified by the gamegrab root, a separate anchor that you choose to trust, not droidtop's own.
 
 The index format, the signing chain and the revocation list are in [docs/CATALOG-FORMAT.md](docs/CATALOG-FORMAT.md).
 

@@ -6,19 +6,15 @@ The technical reference for how this catalog is built, signed and revoked. For w
 
 `tools/build_index.py` (run by `.github/workflows/index.yml` four times a day, on demand, and when a
 plugin repository sends a `plugin-published` dispatch) reads every public, unarchived repository of
-the organisation and lists each `*.droidplugin.tar.xz` release asset that is one of:
-
-- **certified** (the organisation's own plugins): the bundle carries `origin.cert`, a plugin
-  certificate issued by the organisation's plugin master (`catalog-master-key.json`, public) for
-  the bundle's plugin id, its `manifest.sig` verifies against the certified key, and its origin is
-  the organisation's, `gamegrab` (ids `gamegrab.<name>`). That origin is listed under the master's
-  key. A repository gets its key and certificate with `plugin-key-provision official` run with the
-  organisation's master seed (owner-run), which sets `PLUGIN_SIGNING_KEY` and `PLUGIN_SIGNING_CERT`
-  on it;
-- **independent**: the repository commits a `droidtop-plugin-key.json`
-  (`{"origin": "<origin id>", "key": "<P-256 SubjectPublicKeyInfo, base64>"}`) at the root of its
-  default branch, and the bundle's manifest is signed by that key under that origin (romgi's shape
-  today, origin `bi0shacker001`).
+the organisation and lists each `*.droidplugin.tar.xz` release asset whose `manifest.jws` verifies:
+a detached ES256 JWS over the exact bytes of `manifest.json` (`typ` `droidtop-plugin+jws`), the
+repository's leaf certificate in `x5c` (the root is not included), issued by the gamegrab root
+(`gamegrab-root.pub`, public). The leaf names `urn:droidtop:origin:gamegrab` and, if it names
+plugins, the manifest's id (`urn:droidtop:plugin:<id>`, `.*` covers a namespace). The manifest's
+origin is `gamegrab` (ids `gamegrab.<name>`). A repository's key and leaf come from the owner's
+provisioning and are the repository secrets `PLUGIN_SIGNING_KEY` and `PLUGIN_SIGNING_CERT`. Each
+plugin repository also publishes `droidtop-plugin-key.json`, `{"origin": "gamegrab", "certificate":
+"<the gamegrab root certificate>"}`, on its releases, which droidtop uses to anchor the origin.
 
 A prerelease is listed in the `testing` stream, which droidtop does not offer; any other release
 is `stable`. A plugin id named in `catalog.json` `retired` (id -> note saying why, e.g. a variant
@@ -42,10 +38,10 @@ catalog that is not its own:
   "homepage": "https://github.com/gamegrab-sources/catalog",
   "trust": "unofficial",
   "origin": "gamegrab",                     // the organisation's own origin, beside its key
-  "key": {                                  // the organisation's plugin master
+  "key": {                                  // the gamegrab root
    "formatVersion": 1,
-   "algorithm": "SHA256withECDSA",
-   "publicKeySpki": "<the master's P-256 public key, base64>",
+   "algorithm": "droidtop-chain-v1",
+   "publicKeySpki": "<the root's public key, base64>",
    "keySha256": "<hex SHA-256 of its DER>"
   }
  },
@@ -54,7 +50,7 @@ catalog that is not its own:
   {
    "origin": "<origin id>",
    "trust": "third-party",
-   "key": { "formatVersion": 1, "algorithm": "SHA256withECDSA", "origin": "<origin id>",
+   "key": { "formatVersion": 1, "algorithm": "droidtop-chain-v1", "origin": "<origin id>",
             "publicKeySpki": "<base64>", "keySha256": "<hex>" },
    "plugins": [
     {
@@ -80,44 +76,24 @@ catalog that is not its own:
 `catalog` and `disclaimer` are configured in `catalog.json`. Raising the disclaimer's `version`
 makes droidtop ask every user to accept the new text before it lists anything again.
 
-## The master and the signature
+## The root and the signature
 
-The organisation's plugin master (`catalog-master-key.json`, public material only; origin
-`gamegrab`, key sha256 `1076ed8549a37166568cc5d4c92914da3b286b6bef61ed3a757650d2e20fca3f`) is its
-own, from a separate master seed: it is not derived from, or certified by, droidtop's plugin
-master, and its plugins are never "Official" in droidtop. droidtop shows its fingerprint when you
-add the catalog, trusts it from then on, verifies every certified bundle as bundle -> repository key
--> `origin.cert` -> this master, and refuses a later copy of the index that names another master.
+The gamegrab root (`gamegrab-root.pub`, public material only; origin `gamegrab`) is a third-party
+anchor that people choose to trust when they add this catalog. It is not pinned by droidtop and its
+plugins are never "Official". droidtop shows its fingerprint when you add the catalog, trusts it
+from then on, verifies every bundle as `manifest.jws` -> leaf -> this root, and refuses a later copy
+of the index that names another root. Expiry dates are not checked.
 
 When the repository secrets `CATALOG_SIGNING_KEY` (a PEM P-256 private key) and
-`CATALOG_SIGNING_CERT` (its certificate) exist, the workflow also commits beside the index:
-
-- `index.json.sig`: base64 DER ECDSA/SHA-256 over the exact bytes of `index.json`;
-- `index.cert`: the catalog key's certificate in droidtop's catalog certificate format (the one
-  droidtop-components uses), with `catalogs: ["gamegrab-sources/catalog"]`, issued by the master
-  over
-
-      droidtop-catalog-cert-v1
-      id:<certId>
-      catalogs:gamegrab-sources/catalog
-      key:<publicKeySpki>
-      notBefore:<epoch s>
-      notAfter:<epoch s>
-
-Once droidtop has seen a valid signature it refuses an unsigned copy. Without the secrets the index
-is published unsigned.
+`CATALOG_SIGNING_CERT` (its leaf certificate, issued by the gamegrab root, naming
+`urn:droidtop:catalog:gamegrab-sources/catalog`) exist, the workflow also commits `index.json.jws`
+beside the index: a detached ES256 JWS (`typ` `droidtop-catalog+jws`, the leaf in `x5c`) over the
+exact bytes of `index.json`, written by `tools/sign_jws.sh` and checked by
+`build_index.py --check-signature` before it is committed. Once droidtop has seen a valid signature
+it refuses an unsigned copy. Without the secrets the index is published unsigned.
 
 ## Revocation
 
-`revocations.json` is droidtop's plugin revocation list, signed by the master
-(`plugin-key-provision revoke --master-seed <the organisation's seed>`, owner-run):
-
-```
-{ "formatVersion": 1, "sequence": <raised on every change>, "certIds": ["gamegrab-sources/<repo>#<generation>"],
-  "keySha256": ["<hex SHA-256 of a revoked key>"], "signature": "<base64, by the master>" }
-```
-
-droidtop fetches it with the index and keeps it only when the master signed it and its sequence is
-higher than the one it has. It applies to this catalog's origins only: a revoked certificate or key
-refuses installs and stops installed plugins at their next start. The committed file is a
-placeholder (sequence 0, nothing listed, unsigned), which droidtop ignores.
+A revocation list for this catalog would be published as `revocations.jws` beside the index, signed
+with a leaf issued by the gamegrab root (EKU `.3`) naming `urn:droidtop:catalog:gamegrab-sources/catalog`.
+Nothing is revoked, so none is published.
