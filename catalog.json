@@ -12,10 +12,11 @@
     "text": "This catalog is unofficial. It is not part of droidtop, and the droidtop project does not make, review or endorse it or the plugins it lists. The plugins listed here may enable access to content from unofficial sources. The catalog and its plugins are provided as is, without warranty of any kind. The maintainers are not responsible for how unofficial plugins are used, or for any content reached through them. You are responsible for complying with the law where you live and with the terms of the sites and services involved. Takedown requests and other concerns: https://github.com/gamegrab-sources/catalog/issues"
   },
   "retired": {
-    "bi0shacker001.romgi-3ds-decrypt": "Retired 2026-10-14: this branch variant of romgi-bio is merged into bi0shacker001.romgi-main (romgi-bio), which carries the feature as an option. Install romgi-bio instead.",
-    "bi0shacker001.romgi-macintosh-garden": "Retired 2026-10-14: this branch variant of romgi-bio is merged into bi0shacker001.romgi-main (romgi-bio), which carries the feature as an option. Install romgi-bio instead.",
-    "bi0shacker001.romgi-prowlarr-integration": "Retired 2026-10-14: this branch variant of romgi-bio is merged into bi0shacker001.romgi-main (romgi-bio), which carries the feature as an option. Install romgi-bio instead.",
-    "bi0shacker001.romgi-ps3-license": "Retired 2026-10-14: this branch variant of romgi-bio is merged into bi0shacker001.romgi-main (romgi-bio), which carries the feature as an option. Install romgi-bio instead.",
-    "bi0shacker001.romgi-self-hosted-db": "Retired 2026-10-14: this branch variant of romgi-bio is merged into bi0shacker001.romgi-main (romgi-bio), which carries the feature as an option. Install romgi-bio instead."
+    "gamegrab.romgi.3ds-decrypt": "Retired 2026-10-14: this branch variant of romgi-bio is merged into gamegrab.romgi.main (romgi-bio), which carries the feature as an option. Install romgi-bio instead.",
+    "gamegrab.romgi.macintosh-garden": "Retired 2026-10-14: this branch variant of romgi-bio is merged into gamegrab.romgi.main (romgi-bio), which carries the feature as an option. Install romgi-bio instead.",
+    "gamegrab.romgi.prowlarr-integration": "Retired 2026-10-14: this branch variant of romgi-bio is merged into gamegrab.romgi.main (romgi-bio), which carries the feature as an option. Install romgi-bio instead.",
+    "gamegrab.romgi.ps3-license": "Retired 2026-10-14: this branch variant of romgi-bio is merged into gamegrab.romgi.main (romgi-bio), which carries the feature as an option. Install romgi-bio instead.",
+    "gamegrab.romgi.self-hosted-db": "Retired 2026-10-14: this branch variant of romgi-bio is merged into gamegrab.romgi.main (romgi-bio), which carries the feature as an option. Install romgi-bio instead.",
+    "gamegrab.romgi.dev": "Retired 2026-10-15: a build of the plugin-core wrapper branch, not an installable line. Install romgi-bio (gamegrab.romgi.main) instead."
   }
 }
