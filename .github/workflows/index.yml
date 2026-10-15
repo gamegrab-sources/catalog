@@ -65,7 +65,7 @@ jobs:
           if [ -n "$CATALOG_SIGNING_KEY" ] && [ -n "$CATALOG_SIGNING_CERT" ]; then
             # An index whose committed signature still verifies keeps it: ECDSA signatures differ on
             # every run, so re-signing an unchanged index would commit on every run.
-            if python3 tools/build_index.py --check-signature >/dev/null 2>&1; then
+            if [ -f index.json.jws ] && python3 tools/build_index.py --check-signature >/dev/null 2>&1; then
               echo "index.json: the committed signature still verifies"
             else
               bash tools/sign_jws.sh droidtop-catalog+jws index.json index.json.jws
