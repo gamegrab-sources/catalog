@@ -16,8 +16,24 @@ provisioning and are the repository secrets `PLUGIN_SIGNING_KEY` and `PLUGIN_SIG
 plugin repository also publishes `droidtop-plugin-key.json`, `{"origin": "gamegrab", "certificate":
 "<the gamegrab root certificate>"}`, on its releases, which droidtop uses to anchor the origin.
 
-A prerelease is listed in the `testing` stream, which droidtop does not offer; any other release
-is `stable`. A plugin id named in `catalog.json` `retired` (id -> note saying why, e.g. a variant
+Each release is listed in a channel, its `stream` (Droidtop/tracker#179; the owner, 2026-10-16: "Yeah,
+plugins are channeled, too. They should also have categories"; droidtop SPEC 12a "Channels"): a
+release that is not a pre-release is `stable`; a pre-release whose tag is `plugin-unstable*` or
+`plugin-build*` (the per-push builds of `droidtop-plugin-bundle.yml`) is `unstable`; any other
+pre-release is `testing`. droidtop offers a channel's own line and every steadier one, `stable` by
+default. The index keeps the newest 5 stable, 3 testing and 3 unstable releases per plugin, so a busy
+branch cannot push the newest stable release off the list.
+
+Each plugin carries a `category`, taken from its newest release's signed manifest. It is one of
+`sources`, `emulators`, `system`, `sync`, `integrations`, `appearance` or `other` (droidtop plugin-api.md
+1.2 "Categories"), or one of the four 2026-10-15 ids droidtop reads as their successors: `tools`
+(system), `themes` (appearance), `social` (integrations), `games` (sources). An unknown value is a
+warning in the run and the plugin is listed without a category, which droidtop reads as `other`;
+`build_index.py --check` refuses an unknown category in the committed index. The catalog's site shows each
+plugin's category and the channel of each release. This mirrors droidtop-platforms
+`generator/droidtop_plugins_index.py` (commit c1f41b0).
+
+A plugin id named in `catalog.json` `retired` (id -> note saying why, e.g. a variant
 merged into another plugin) is left out too, its note in the run's summary; its repository, releases
 and tags stay. Anything else is left out, with the reason in the run's summary. Two repositories
 cannot list the same origin with different keys, or the same plugin id.
@@ -91,10 +107,11 @@ catalog that is not its own:
      "id": "<origin>.<name>",
      "label": "<from the signed manifest>",
      "description": "<from the signed manifest, or null>",
+     "category": "<from the newest release signed manifest; omitted when absent or unknown>",
      "releases": [
       {
        "version": "<the manifest's version>",
-       "stream": "stable" | "testing",
+       "stream": "stable" | "testing" | "unstable",
        "publishedAt": "<ISO-8601 UTC>",
        "manifestSha256": "<hex SHA-256 of manifest.json>",
        "bundle": { "name": "<file>", "url": "<https>", "size": <bytes>, "sha256": "<hex>" }

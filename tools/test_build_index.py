@@ -69,6 +69,23 @@ def main():
         change(bad)
         check(build_index.check_document(bad, config) != [], what)
 
+    check(build_index.stream_of({"tag_name": "plugin-v1.5.0", "prerelease": False}) == "stable", "a release is stable")
+    for tag in ("plugin-unstable", "plugin-build.42", "plugin-unstable-arm", "plugin-build-arm.7"):
+        check(build_index.stream_of({"tag_name": tag, "prerelease": True}) == "unstable", tag + " is unstable")
+    for tag in ("plugin-v1.6.0-beta.1", "plugin-builder", "plugin-unstabled"):
+        check(build_index.stream_of({"tag_name": tag, "prerelease": True}) == "testing", tag + " is testing")
+    for category in ("sources", "system", "appearance", "tools", "games"):
+        check(build_index.category_of({"category": category}) == category, category + " is a known category")
+    for manifest in ({}, {"category": "Sources"}, {"category": "misc"}, {"category": 3}):
+        check(build_index.category_of(manifest) is None, repr(manifest) + " has no known category")
+    known_category = copy.deepcopy(good)
+    known_category["origins"][0]["plugins"][0].update(category="sync")
+    known_category["origins"][0]["plugins"][0]["releases"][0]["stream"] = "unstable"
+    check(build_index.check_document(known_category, config) == [], "unstable releases and a known category pass")
+    unknown_category = copy.deepcopy(good)
+    unknown_category["origins"][0]["plugins"][0].update(category="misc")
+    check(build_index.check_document(unknown_category, config) != [], "an unknown category is refused by --check")
+
     named = copy.deepcopy(good)
     named["catalog"]["origin"] = config["catalog"]["origin"]
     check(build_index.check_document(named, config) != [], "an origin without its root key is refused")

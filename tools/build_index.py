@@ -13,7 +13,11 @@ a detached ES256 JWS over the exact manifest.json bytes, the repository's leaf
 certificate in x5c, issued by the gamegrab root (gamegrab-root.pub, public). The
 leaf names urn:droidtop:origin:gamegrab and, if it names plugins, the manifest's
 id; the manifest is under the origin gamegrab (ids gamegrab.<name>).
-A prerelease is the "testing" stream, anything else "stable".
+Each release is listed with its channel (`stream`, as droidtop-platforms' generator does,
+Droidtop/tracker#179): a release is "stable"; a pre-release is "unstable" when its tag is
+`plugin-unstable*` or `plugin-build*` (the per-push builds), and "testing" otherwise. The index keeps
+the newest 5 stable, 3 testing and 3 unstable releases per plugin. Each plugin carries the
+`category` of its newest release's signed manifest, when it is one droidtop knows.
 
 Nothing a repository says is trusted for more than display: droidtop verifies
 each bundle's signature and every payload hash again on the device. This script
@@ -66,7 +70,15 @@ CATALOG_URN = "urn:droidtop:catalog:"
 BUNDLE_SUFFIX = ".droidplugin.tar.xz"
 MAX_BUNDLES_PER_RELEASE = 8
 MAX_BUNDLE_BYTES = 512 * 1024 * 1024
-MAX_RELEASES_PER_PLUGIN = 10
+# Per plugin and stream: a plugin's newest stable release must never fall off the list
+# because a busy branch published many pre-releases after it.
+KEEP_RELEASES = {"stable": 5, "testing": 3, "unstable": 3}
+# The per-push pre-releases of droidtop-plugin-bundle.yml (with the caller's optional suffix).
+UNSTABLE_TAG = re.compile(r"plugin-(unstable|build)([.-]|$)")
+# droidtop's categories (plugin-api.md 1.2), and the 2026-10-15 ids droidtop reads as their
+# successors (tools, themes, social, games). Anything else is left out, which droidtop shows as "other".
+CATEGORIES = {"sources", "emulators", "system", "sync", "integrations", "appearance", "other",
+              "tools", "themes", "social", "games"}
 MAX_DISCLAIMER_CHARS = 4000
 RETRIES = 3
 RETRY_PAUSE_SECONDS = 10
@@ -199,6 +211,19 @@ def manifest_of(bundle, what):
     return found["manifest.json"], found["manifest.jws"].decode("ascii", "replace")
 
 
+def stream_of(release):
+    """The channel a GitHub release is listed in."""
+    if not release.get("prerelease"):
+        return "stable"
+    return "unstable" if UNSTABLE_TAG.match(str(release.get("tag_name", ""))) else "testing"
+
+
+def category_of(manifest):
+    """The manifest's category when droidtop knows it, else None."""
+    category = manifest.get("category")
+    return category if isinstance(category, str) and category in CATEGORIES else None
+
+
 def release_entry(release, asset, bundle, root):
     """root: the organisation's (origin, PEM)."""
     what = release["tag_name"] + "/" + asset["name"]
@@ -223,9 +248,13 @@ def release_entry(release, asset, bundle, root):
     if not label or not version:
         raise Rejected(what + ": the manifest has no label or version")
     description = manifest.get("description")
-    return origin, plugin_id, label, description if isinstance(description, str) and description.strip() else None, {
+    if manifest.get("category") is not None and category_of(manifest) is None:
+        warn(what + ": unknown category " + repr(manifest.get("category")) + "; listed without one")
+    meta = (label, description if isinstance(description, str) and description.strip() else None,
+            category_of(manifest))
+    return origin, plugin_id, meta, {
         "version": version,
-        "stream": "testing" if release.get("prerelease") else "stable",
+        "stream": stream_of(release),
         "publishedAt": release.get("published_at"),
         "manifestSha256": sha256_hex(manifest_bytes),
         "bundle": {
@@ -322,20 +351,21 @@ def build(config, previous):
                     cached = known.get((asset["browser_download_url"], asset["size"], release.get("published_at")))
                     if cached and cached[0] == root[0] and cached[1] == root[2]["keySha256"]:
                         origin, _, plugin, listed = cached
-                        plugin_id, label, description = plugin["id"], plugin["label"], plugin.get("description")
-                        release_json = dict(listed, stream="testing" if release.get("prerelease") else "stable")
+                        plugin_id = plugin["id"]
+                        meta = (plugin["label"], plugin.get("description"), plugin.get("category"))
+                        release_json = dict(listed, stream=stream_of(release))
                     else:
                         log("downloading " + what)
                         bundle = download(asset["browser_download_url"], MAX_BUNDLE_BYTES)
-                        origin, plugin_id, label, description, release_json = release_entry(release, asset, bundle, (root[0], root[1]))
+                        origin, plugin_id, meta, release_json = release_entry(release, asset, bundle, (root[0], root[1]))
                     if plugin_id in retired:
                         raise Rejected(what + ": " + plugin_id + " is retired: " + retired[plugin_id])
                     entry = origin_entry(origin, dict(root[2], origin=origin), name)
                     owner = plugin_owner.setdefault(plugin_id, name)
                     if owner != name:
                         raise Rejected(what + ": plugin " + plugin_id + " is already listed from " + owner)
-                    plugin = entry["plugins"].setdefault(plugin_id, {"id": plugin_id, "label": label, "description": description, "releases": []})
-                    plugin["releases"].append((release.get("published_at") or "", label, description, release_json))
+                    plugin = entry["plugins"].setdefault(plugin_id, {"id": plugin_id, "releases": []})
+                    plugin["releases"].append((release.get("published_at") or "", meta, release_json))
                 except Rejected as reason:
                     refused.append(str(reason))
     document_origins = []
@@ -344,14 +374,20 @@ def build(config, previous):
         plugins = []
         for plugin_id in sorted(entry["plugins"]):
             plugin = entry["plugins"][plugin_id]
-            ordered = sorted(plugin["releases"], key=lambda r: r[0], reverse=True)[:MAX_RELEASES_PER_PLUGIN]
-            # Label and description come from the newest release's signed manifest.
-            plugins.append({
-                "id": plugin_id,
-                "label": ordered[0][1],
-                "description": ordered[0][2],
-                "releases": [r[3] for r in ordered],
-            })
+            ordered = sorted(plugin["releases"], key=lambda r: r[0], reverse=True)
+            kept, counts = [], {}
+            for item in ordered:
+                stream = item[2]["stream"]
+                if counts.get(stream, 0) < KEEP_RELEASES.get(stream, 3):
+                    counts[stream] = counts.get(stream, 0) + 1
+                    kept.append(item)
+            # Label, description and category come from the newest release's signed manifest.
+            label, description, category = ordered[0][1]
+            listed = {"id": plugin_id, "label": label, "description": description}
+            if category is not None:
+                listed["category"] = category
+            listed["releases"] = [r[2] for r in kept]
+            plugins.append(listed)
         if plugins:
             document_origins.append({"origin": origin, "trust": "third-party", "key": entry["key"], "plugins": plugins})
     document = {
@@ -412,6 +448,8 @@ def check_document(document, config):
             seen.add(plugin_id)
             if not plugin.get("label") or not plugin.get("releases"):
                 problems.append("plugin " + repr(plugin_id) + " has no label or no release")
+            if "category" in plugin and plugin["category"] not in CATEGORIES:
+                problems.append("plugin " + repr(plugin_id) + " has an unknown category")
             for release in plugin.get("releases", []):
                 bundle = release.get("bundle", {})
                 if release.get("stream") not in ("stable", "testing", "unstable") \

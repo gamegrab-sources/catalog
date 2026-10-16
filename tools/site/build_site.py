@@ -189,6 +189,15 @@ def describe_permissions(manifest: dict, registry: dict) -> list:
 
 # ---------------------------------------------------------------- model
 
+CHANNEL_NAMES = {"stable": "Stable", "testing": "Testing", "unstable": "Unstable"}
+# droidtop's category ids and names (plugin-api.md 1.2); the 2026-10-15 ids are read as their successors.
+CATEGORY_NAMES = {
+    "sources": "Sources and fetchers", "emulators": "Emulators and runners", "system": "System tools",
+    "sync": "Sync and backup", "integrations": "Integrations", "appearance": "Appearance", "other": "Other",
+    "tools": "System tools", "themes": "Appearance", "social": "Integrations", "games": "Sources and fetchers",
+}
+
+
 def latest_stable(plugin: dict):
     stable = [r for r in plugin.get("releases", []) if r.get("stream") == "stable"]
     return max(stable, key=lambda r: r.get("publishedAt", ""), default=None)
@@ -301,6 +310,7 @@ def render_plugin(index: dict, origin: dict, plugin: dict, perms, perm_note, off
     chip = '<span class="chip official">Official</span>' if official else '<span class="chip unofficial">Unofficial</span>'
     repo = source_repo(plugin)
     meta = f'<code>{e(pid)}</code> &middot; publisher <strong>{e(origin.get("origin", ""))}</strong> &middot; '
+    meta += f'{e(CATEGORY_NAMES.get(plugin.get("category"), "Other"))} &middot; '
     meta += f"stable {e(latest['version'])}" if latest else "no stable release yet"
     actions = []
     if latest and PLUGIN_ID.match(pid):
@@ -310,7 +320,7 @@ def render_plugin(index: dict, origin: dict, plugin: dict, perms, perm_note, off
     releases = unique_releases(plugin)
     rows = "".join(
         f"<tr><td>{e(str(r.get('version', '')))}</td>"
-        f"<td>{'Stable' if r.get('stream') == 'stable' else 'Testing'}</td>"
+        f"<td>{CHANNEL_NAMES.get(r.get('stream'), 'Testing')}</td>"
         f"<td>{e(short_date(r.get('publishedAt', '')))}</td><td>{e(size_text(r.get('bundle', {}).get('size')))}</td></tr>"
         for r in releases
     )
@@ -326,7 +336,7 @@ def render_plugin(index: dict, origin: dict, plugin: dict, perms, perm_note, off
 <details><summary>Permissions{count}</summary>{perm_html}</details>
 <details><summary>Versions and channels</summary>
 <table><thead><tr><th>Version</th><th>Channel</th><th>Published</th><th>Size</th></tr></thead><tbody>{rows}</tbody></table>
-<p class="note">Stable is what droidtop offers. Testing builds are listed for the record and are not offered.</p></details>
+<p class="note">Stable is what droidtop offers by default. A person can move a catalog or a plugin to Testing, which also offers stable releases, or to Unstable, which offers all three. Moving to a steadier channel never offers an older release.</p></details>
 <details><summary>Signature</summary>{signature_text(index, origin, official)}
 {f'<p>Bundle SHA-256 <code>{e(bundle_hash)}</code>, checked against this catalog when the page was built.</p>' if bundle_hash and perms is not None else ''}
 <p class="note">droidtop checks the signature and every file again on your device, and the plugin runs only after you approve it.</p></details>
