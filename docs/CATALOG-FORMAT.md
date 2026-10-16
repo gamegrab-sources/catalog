@@ -22,6 +22,40 @@ merged into another plugin) is left out too, its note in the run's summary; its 
 and tags stay. Anything else is left out, with the reason in the run's summary. Two repositories
 cannot list the same origin with different keys, or the same plugin id.
 
+## The dispatch each plugin repository sends
+
+droidtop reads this catalog's `index.json`, so a release is offered only once the index lists it. The
+index workflow rebuilds on `repository_dispatch` of type `plugin-published` as well as on its schedule,
+so each plugin repository sends one after publishing a release, as a step placed after its release step
+and under that step's own condition (`<the release step's own condition>` below):
+
+```yaml
+      - name: Ask the gamegrab-sources catalog to reindex
+        if: <the release step's own condition>
+        env:
+          GH_TOKEN: ${{ secrets.CATALOG_DISPATCH_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          if [ -z "${GH_TOKEN:-}" ]; then
+            echo "No CATALOG_DISPATCH_TOKEN; the catalog lists this release on its schedule."
+            exit 0
+          fi
+          gh api repos/gamegrab-sources/catalog/dispatches \
+            -f event_type=plugin-published \
+            -f "client_payload[repo]=$GH_REPO"
+```
+
+A dispatch to another repository needs a token of its own, as the job's `GITHUB_TOKEN` cannot reach it.
+That token is the organisation secret `CATALOG_DISPATCH_TOKEN`: a fine-grained token with
+`contents: write` on `gamegrab-sources/catalog` only, available to the plugin repositories. While the
+secret is unset the step is a no-op and the scheduled run lists the release within hours.
+
+A dispatch only asks for a run. The index still holds only what the generator verifies, whoever sent it.
+
+Decision (coordinator, 2026-10-16): "Add the same step after their release step, as a no-op when the
+token is unset."
+
 ## Index format
 
 `index.json` is droidtop's plugin catalog index, schema version 1, the same format as
