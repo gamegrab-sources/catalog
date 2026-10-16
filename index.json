@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "generatedAt": "2026-10-15T15:28:50Z",
+ "generatedAt": "2026-10-16T21:42:00Z",
  "catalog": {
   "id": "gamegrab-sources/catalog",
   "name": "gamegrab-sources",
@@ -34,7 +34,32 @@
      "id": "gamegrab.abandonware",
      "label": "Abandonware",
      "description": "Searches MyAbandonware and the Internet Archive for old DOS and Windows games and downloads the one you pick.",
+     "category": "sources",
      "releases": [
+      {
+       "version": "0.3.2-12",
+       "stream": "stable",
+       "publishedAt": "2026-10-16T20:44:05Z",
+       "manifestSha256": "d7ca96ca453282a2df3d148e2b30abf7bd9d356c77880df3d1756c10a9f659b5",
+       "bundle": {
+        "name": "gamegrab.abandonware.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-abandonware/releases/download/v0.3.2-12/gamegrab.abandonware.droidplugin.tar.xz",
+        "size": 10724,
+        "sha256": "44e3a17f93f912890ba6fbd4f82e4409fd512f1d1f1eda4e79725677ad606b75"
+       }
+      },
+      {
+       "version": "0.3.1-10",
+       "stream": "stable",
+       "publishedAt": "2026-10-16T18:52:55Z",
+       "manifestSha256": "e3d1b18815f8b076ed46793fe35134b01ba1f2a2906dbea4770592ba76dc449a",
+       "bundle": {
+        "name": "gamegrab.abandonware.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-abandonware/releases/download/v0.3.1-10/gamegrab.abandonware.droidplugin.tar.xz",
+        "size": 10704,
+        "sha256": "0075c0c3382717b15bea4afaaefb260321a7400daed27dc6e9735c816992f9da"
+       }
+      },
       {
        "version": "0.3.1-9",
        "stream": "stable",
@@ -65,7 +90,32 @@
      "id": "gamegrab.bios",
      "label": "BIOS and firmware",
      "description": "Finds the BIOS and firmware files your emulators ask for and downloads them, checked where the source gives a checksum.",
+     "category": "sources",
      "releases": [
+      {
+       "version": "0.3.3-12",
+       "stream": "stable",
+       "publishedAt": "2026-10-16T20:44:07Z",
+       "manifestSha256": "5aea384f1973ae5ce0a0ddc91aca4f04609888eac4542ecac3c83bcc0405c04a",
+       "bundle": {
+        "name": "gamegrab.bios.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-bios/releases/download/v0.3.3-12/gamegrab.bios.droidplugin.tar.xz",
+        "size": 44192,
+        "sha256": "1949e7a9968efc3212598b83b04d2892bd3654c432a0e8e093f366051c09d5a4"
+       }
+      },
+      {
+       "version": "0.3.2-10",
+       "stream": "stable",
+       "publishedAt": "2026-10-16T18:52:50Z",
+       "manifestSha256": "fe3d270b8fa7ca02d484e49be990da4333ed18a33a15f572bf25e4067091bc61",
+       "bundle": {
+        "name": "gamegrab.bios.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-bios/releases/download/v0.3.2-10/gamegrab.bios.droidplugin.tar.xz",
+        "size": 44188,
+        "sha256": "893d35c9055f1d8260c9b8d53052557b71f1d24c3a93ccb8846308589b4b8f6b"
+       }
+      },
       {
        "version": "0.3.2-9",
        "stream": "stable",
@@ -98,6 +148,18 @@
      "description": "Finds F95zone games, checks your linked games for new versions, and downloads them with your F95zone account.",
      "releases": [
       {
+       "version": "0.4.2-28",
+       "stream": "stable",
+       "publishedAt": "2026-10-16T18:59:08Z",
+       "manifestSha256": "ac21f55ba203d2d60bc1865f1b2f3b4c9abb605c60b8a1c747dfc48ab6f05350",
+       "bundle": {
+        "name": "gamegrab.f95.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.4.2-28/gamegrab.f95.droidplugin.tar.xz",
+        "size": 1032060,
+        "sha256": "a5cee2e09a66579fcccc184b804330e2bf96d0e6f49fa0a84c2792d9a660b6b3"
+       }
+      },
+      {
        "version": "0.4.2-27",
        "stream": "stable",
        "publishedAt": "2026-10-15T15:25:19Z",
@@ -115,7 +177,32 @@
      "id": "gamegrab.lewdcorner",
      "label": "LewdCorner",
      "description": "Finds LewdCorner games, checks your linked games for new versions, and downloads them with your LewdCorner account.",
+     "category": "sources",
      "releases": [
+      {
+       "version": "0.3.2-12",
+       "stream": "stable",
+       "publishedAt": "2026-10-16T20:44:11Z",
+       "manifestSha256": "b3c207d73fdcc9a5fe0721126c1e9ae1e97201187a1c21f7065b80b52e224976",
+       "bundle": {
+        "name": "gamegrab.lewdcorner.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-lewdcorner/releases/download/v0.3.2-12/gamegrab.lewdcorner.droidplugin.tar.xz",
+        "size": 15764,
+        "sha256": "dece14a501ced03c354cd13f163f93831d285c09c120b7955bef1556d0656b31"
+       }
+      },
+      {
+       "version": "0.3.1-10",
+       "stream": "stable",
+       "publishedAt": "2026-10-16T18:52:53Z",
+       "manifestSha256": "80ec3c92f82bf6ca7d60de0974be5fd860f998fcfc35d9b4f6dad4757114241a",
+       "bundle": {
+        "name": "gamegrab.lewdcorner.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-lewdcorner/releases/download/v0.3.1-10/gamegrab.lewdcorner.droidplugin.tar.xz",
+        "size": 15748,
+        "sha256": "275854cf4cdb316f85a95b700a7a5e2878410ed806bd0fbe266870221da6d331"
+       }
+      },
       {
        "version": "0.3.1-9",
        "stream": "stable",
@@ -146,7 +233,32 @@
      "id": "gamegrab.nyaa",
      "label": "Nyaa",
      "description": "Searches Nyaa and Sukebei for games and opens a torrent in your torrent app.",
+     "category": "sources",
      "releases": [
+      {
+       "version": "0.3.2-13",
+       "stream": "stable",
+       "publishedAt": "2026-10-16T20:43:19Z",
+       "manifestSha256": "20c938ceec8ee9bace6f77862ed672af4fbeade9253bd9335062364cdb1ee812",
+       "bundle": {
+        "name": "gamegrab.nyaa.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-nyaa/releases/download/v0.3.2-13/gamegrab.nyaa.droidplugin.tar.xz",
+        "size": 13296,
+        "sha256": "d006d3e75ff5a96dafba468601a17f59bd7df7dc2dc5edfb0d9f583c46096a72"
+       }
+      },
+      {
+       "version": "0.3.1-11",
+       "stream": "stable",
+       "publishedAt": "2026-10-16T18:52:57Z",
+       "manifestSha256": "c9f9247f910e836d7342332e0696b8a879bf8cdc624be1baa3168de6c59ec753",
+       "bundle": {
+        "name": "gamegrab.nyaa.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-nyaa/releases/download/v0.3.1-11/gamegrab.nyaa.droidplugin.tar.xz",
+        "size": 13296,
+        "sha256": "f245c04a016fed7d63a20f7fe6042e07ab3b235ac185232cba9ed10d859cca83"
+       }
+      },
       {
        "version": "0.3.1-10",
        "stream": "stable",
@@ -177,7 +289,32 @@
      "id": "gamegrab.repacks",
      "label": "Repacks",
      "description": "Finds FitGirl, DODI and ElAmigos releases, checks your linked games for new versions, and downloads them or opens their torrents.",
+     "category": "sources",
      "releases": [
+      {
+       "version": "0.3.2-11",
+       "stream": "stable",
+       "publishedAt": "2026-10-16T20:44:07Z",
+       "manifestSha256": "83e5d8c1a171369266eb6da4dbdabeb5cd4a0a75bb471b16a8d824e321f66e7a",
+       "bundle": {
+        "name": "gamegrab.repacks.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-repacks/releases/download/v0.3.2-11/gamegrab.repacks.droidplugin.tar.xz",
+        "size": 17844,
+        "sha256": "59eb48398e420f8dc4733e8b7a14051933ff1f1520ec290a1d50ccfa28287c29"
+       }
+      },
+      {
+       "version": "0.3.1-9",
+       "stream": "stable",
+       "publishedAt": "2026-10-16T18:53:01Z",
+       "manifestSha256": "80166ac841d5959c87532dd4db89c1897b5be186586d5ebef623e4cb10fa8cbc",
+       "bundle": {
+        "name": "gamegrab.repacks.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-repacks/releases/download/v0.3.1-9/gamegrab.repacks.droidplugin.tar.xz",
+        "size": 17832,
+        "sha256": "786d8ac81ff33ce5d81a957790dd4b74a14cf5dc7b3527b006bb2be6231331bd"
+       }
+      },
       {
        "version": "0.3.1-8",
        "stream": "stable",
@@ -208,17 +345,18 @@
      "id": "gamegrab.romgi.main",
      "label": "romgi-bio",
      "description": "romgi-bio (github.com/bi0shacker001/romgi) as a droidtop flutter_embed plugin -- search the game index and download into droidtop's own library folders; romgi-bio's own screen adds BIOS and system files, PS3 licences and optional live Prowlarr and Macintosh Garden search. Unofficial (gamegrab-sources).",
+     "category": "sources",
      "releases": [
       {
-       "version": "1.2.0-88",
+       "version": "1.2.0-96",
        "stream": "stable",
-       "publishedAt": "2026-10-15T15:24:09Z",
-       "manifestSha256": "866f9df3c22414fa187c4d809cb989b786bed177a91d9cef799e681312dc7bf8",
+       "publishedAt": "2026-10-16T20:50:42Z",
+       "manifestSha256": "db55d40a6061646f8486a3a5534fbca959edd46e8fa7c117014bbc6ced431440",
        "bundle": {
         "name": "gamegrab.romgi.main.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-main/gamegrab.romgi.main.droidplugin.tar.xz",
-        "size": 5841980,
-        "sha256": "1c966d20cf5765d3f1d2caa52024557affcd6373fef3ac8aab3fd64e5b3ba788"
+        "size": 5844172,
+        "sha256": "dc28005b91845077fe4be4de7619cd5c25f1a1d5ad47ff886fec2d667d02402a"
        }
       }
      ]
