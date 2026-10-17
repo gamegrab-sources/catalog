@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "generatedAt": "2026-10-16T21:42:00Z",
+ "generatedAt": "2026-10-17T11:10:54Z",
  "catalog": {
   "id": "gamegrab-sources/catalog",
   "name": "gamegrab-sources",
@@ -146,7 +146,20 @@
      "id": "gamegrab.f95",
      "label": "F95zone",
      "description": "Finds F95zone games, checks your linked games for new versions, and downloads them with your F95zone account.",
+     "category": "sources",
      "releases": [
+      {
+       "version": "0.4.4-32",
+       "stream": "stable",
+       "publishedAt": "2026-10-17T06:15:30Z",
+       "manifestSha256": "554a896dda462e080689fe3016e415e843ae1281c78bc239bb42ab0ecc32dc60",
+       "bundle": {
+        "name": "gamegrab.f95.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.4.4-32/gamegrab.f95.droidplugin.tar.xz",
+        "size": 1033496,
+        "sha256": "142e53bcb7b4f2bfe3cd7e70a3c7d6ea6565aa16e94c1c4bce1bc5d5d9fa719a"
+       }
+      },
       {
        "version": "0.4.2-28",
        "stream": "stable",
