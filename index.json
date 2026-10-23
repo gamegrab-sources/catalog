@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "generatedAt": "2026-10-23T17:26:54Z",
+ "generatedAt": "2026-10-23T21:40:56Z",
  "catalog": {
   "id": "gamegrab-sources/catalog",
   "name": "gamegrab-sources",
@@ -161,6 +161,18 @@
      "category": "sources",
      "releases": [
       {
+       "version": "0.5.3-42",
+       "stream": "stable",
+       "publishedAt": "2026-10-23T19:00:43Z",
+       "manifestSha256": "d0c56209ae0fedb405bdca75566b6c866e81ed030081465932d7fc37be77e39b",
+       "bundle": {
+        "name": "gamegrab.f95.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.5.3-42/gamegrab.f95.droidplugin.tar.xz",
+        "size": 1052572,
+        "sha256": "e1ab58101a2ff983f582ce37e9dca85b21302a242e88b48d9539145dbc76e4b8"
+       }
+      },
+      {
        "version": "0.5.2-41",
        "stream": "stable",
        "publishedAt": "2026-10-23T15:39:56Z",
@@ -206,18 +218,6 @@
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.4.8-36/gamegrab.f95.droidplugin.tar.xz",
         "size": 1047500,
         "sha256": "e1d54b6c90d70cdb54a52bd31aac37eb06d3cbcc83cf8b87750f77002774de0c"
-       }
-      },
-      {
-       "version": "0.4.7-35",
-       "stream": "stable",
-       "publishedAt": "2026-10-17T12:51:03Z",
-       "manifestSha256": "d33a1511acd81a92e1ade44b60fae8e72e1ff2858115a6604d7c6fb2c763361d",
-       "bundle": {
-        "name": "gamegrab.f95.droidplugin.tar.xz",
-        "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.4.7-35/gamegrab.f95.droidplugin.tar.xz",
-        "size": 1043292,
-        "sha256": "764d9b44698e3090836628c4b1e6316902165ef3e8a821bb641f1cda5ea7566e"
        }
       }
      ]
