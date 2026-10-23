@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "generatedAt": "2026-10-23T12:07:15Z",
+ "generatedAt": "2026-10-23T17:26:54Z",
  "catalog": {
   "id": "gamegrab-sources/catalog",
   "name": "gamegrab-sources",
@@ -161,6 +161,18 @@
      "category": "sources",
      "releases": [
       {
+       "version": "0.5.2-41",
+       "stream": "stable",
+       "publishedAt": "2026-10-23T15:39:56Z",
+       "manifestSha256": "f708305ec60aa29604a6591598f3e46e062f8bdf7970f0e8f51c52a8c1158d56",
+       "bundle": {
+        "name": "gamegrab.f95.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.5.2-41/gamegrab.f95.droidplugin.tar.xz",
+        "size": 1053324,
+        "sha256": "9fe80ed876aaaeac97645e1d3493d676320a02e537fd1a1db82025b12408deaa"
+       }
+      },
+      {
        "version": "0.5.1-40",
        "stream": "stable",
        "publishedAt": "2026-10-23T06:14:08Z",
@@ -207,18 +219,6 @@
         "size": 1043292,
         "sha256": "764d9b44698e3090836628c4b1e6316902165ef3e8a821bb641f1cda5ea7566e"
        }
-      },
-      {
-       "version": "0.4.6-34",
-       "stream": "stable",
-       "publishedAt": "2026-10-17T12:39:18Z",
-       "manifestSha256": "f415b9429e5563c24417a6b9639ade5447bb0396891339298dab345276efb2f1",
-       "bundle": {
-        "name": "gamegrab.f95.droidplugin.tar.xz",
-        "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.4.6-34/gamegrab.f95.droidplugin.tar.xz",
-        "size": 1039604,
-        "sha256": "684d48af30c7ba6917cdd7c6803c8666defc36e871a4950ef6e9316d17d7b65e"
-       }
       }
      ]
     },
@@ -228,6 +228,30 @@
      "description": "Finds LewdCorner games, checks your linked games for new versions, and downloads them with your LewdCorner account.",
      "category": "sources",
      "releases": [
+      {
+       "version": "0.4.3-19",
+       "stream": "stable",
+       "publishedAt": "2026-10-23T16:25:36Z",
+       "manifestSha256": "245e83d6e3cbdcdf7ee6c6ddb4f11ae146102a134c16d25c711427f03643448f",
+       "bundle": {
+        "name": "gamegrab.lewdcorner.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-lewdcorner/releases/download/v0.4.3-19/gamegrab.lewdcorner.droidplugin.tar.xz",
+        "size": 18324,
+        "sha256": "c7788e129eea5287371856a7db466b067d9accad44852d289f10f0d72a4e97b8"
+       }
+      },
+      {
+       "version": "0.4.2-18",
+       "stream": "stable",
+       "publishedAt": "2026-10-23T15:33:35Z",
+       "manifestSha256": "14885e6445c166c34078f57da54cf42f8f25f96c9632bfacd12a64bb30747019",
+       "bundle": {
+        "name": "gamegrab.lewdcorner.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-lewdcorner/releases/download/v0.4.2-18/gamegrab.lewdcorner.droidplugin.tar.xz",
+        "size": 18148,
+        "sha256": "9cd6beb6664b4291a33f1ca101746c1db22d76fae2e2377d22e9fa2628232874"
+       }
+      },
       {
        "version": "0.4.1-17",
        "stream": "stable",
@@ -262,30 +286,6 @@
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-lewdcorner/releases/download/v0.3.4-14/gamegrab.lewdcorner.droidplugin.tar.xz",
         "size": 17184,
         "sha256": "aad404a4955b012fac27e93a9331c4384a10f2e6454ff2e7aa1e1b2b46cf2e2e"
-       }
-      },
-      {
-       "version": "0.3.3-13",
-       "stream": "stable",
-       "publishedAt": "2026-10-17T11:43:37Z",
-       "manifestSha256": "a6ef260637e2d6b214ac1c24596185b7526d4b766357b6585d484a829a4b47c1",
-       "bundle": {
-        "name": "gamegrab.lewdcorner.droidplugin.tar.xz",
-        "url": "https://github.com/gamegrab-sources/droidtop-plugin-lewdcorner/releases/download/v0.3.3-13/gamegrab.lewdcorner.droidplugin.tar.xz",
-        "size": 16744,
-        "sha256": "8113bf8c3e7e00b41cf0c67e9e4376ef657e1c2167518313d5a481ecbdd4a1b9"
-       }
-      },
-      {
-       "version": "0.3.2-12",
-       "stream": "stable",
-       "publishedAt": "2026-10-16T20:44:11Z",
-       "manifestSha256": "b3c207d73fdcc9a5fe0721126c1e9ae1e97201187a1c21f7065b80b52e224976",
-       "bundle": {
-        "name": "gamegrab.lewdcorner.droidplugin.tar.xz",
-        "url": "https://github.com/gamegrab-sources/droidtop-plugin-lewdcorner/releases/download/v0.3.2-12/gamegrab.lewdcorner.droidplugin.tar.xz",
-        "size": 15764,
-        "sha256": "dece14a501ced03c354cd13f163f93831d285c09c120b7955bef1556d0656b31"
        }
       }
      ]
