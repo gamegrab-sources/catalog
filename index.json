@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "generatedAt": "2026-10-24T05:01:48Z",
+ "generatedAt": "2026-10-24T16:15:06Z",
  "catalog": {
   "id": "gamegrab-sources/catalog",
   "name": "gamegrab-sources",
@@ -36,6 +36,18 @@
      "description": "Searches MyAbandonware and the Internet Archive for old DOS and Windows games and downloads the one you pick.",
      "category": "sources",
      "releases": [
+      {
+       "version": "0.5.0-15",
+       "stream": "stable",
+       "publishedAt": "2026-10-24T15:48:39Z",
+       "manifestSha256": "1da0617fdb95e783940efbb08341ab18051c6efa38b8b83eceb7aff8dbb999ce",
+       "bundle": {
+        "name": "gamegrab.abandonware.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-abandonware/releases/download/v0.5.0-15/gamegrab.abandonware.droidplugin.tar.xz",
+        "size": 11324,
+        "sha256": "164e795e25823f633859b957bdeafcd6f2ba590486fa237b9c2e75b161716000"
+       }
+      },
       {
        "version": "0.4.1-14",
        "stream": "stable",
@@ -82,18 +94,6 @@
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-abandonware/releases/download/v0.3.1-9/gamegrab.abandonware.droidplugin.tar.xz",
         "size": 10700,
         "sha256": "3bc25ae4fc8393264e3fd2c7bf3b44c5dc5e319ff47a17b7cb92e576450b7ab5"
-       }
-      },
-      {
-       "version": "0.3.1-8",
-       "stream": "stable",
-       "publishedAt": "2026-10-15T15:14:18Z",
-       "manifestSha256": "50bd4b42313a23bee2a37a388d5ff3369fa2ba685147039aa878efaf9d3792db",
-       "bundle": {
-        "name": "gamegrab.abandonware.droidplugin.tar.xz",
-        "url": "https://github.com/gamegrab-sources/droidtop-plugin-abandonware/releases/download/v0.3.1-8/gamegrab.abandonware.droidplugin.tar.xz",
-        "size": 10708,
-        "sha256": "f12c61d882b2c7744c74e470d5c32d3833726de6403dac666223e5081adfe3c3"
        }
       }
      ]
@@ -229,6 +229,18 @@
      "category": "sources",
      "releases": [
       {
+       "version": "0.5.0-20",
+       "stream": "stable",
+       "publishedAt": "2026-10-24T15:48:34Z",
+       "manifestSha256": "fb66d75fa99e67e71dfedb794214392fed364a77f7b47e2e454ff6f900a1ed4c",
+       "bundle": {
+        "name": "gamegrab.lewdcorner.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-lewdcorner/releases/download/v0.5.0-20/gamegrab.lewdcorner.droidplugin.tar.xz",
+        "size": 18908,
+        "sha256": "a12e1d45b648bd00ffe24c3d98ca218bbeaf84d2708627dd8dc217bdc7c11533"
+       }
+      },
+      {
        "version": "0.4.3-19",
        "stream": "stable",
        "publishedAt": "2026-10-23T16:25:36Z",
@@ -274,18 +286,6 @@
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-lewdcorner/releases/download/v0.3.5-15/gamegrab.lewdcorner.droidplugin.tar.xz",
         "size": 16920,
         "sha256": "8f7bd27dca70c3e34ce89ef6a1510617218d36955ae2368ceb10574e6b12953e"
-       }
-      },
-      {
-       "version": "0.3.4-14",
-       "stream": "stable",
-       "publishedAt": "2026-10-17T12:46:55Z",
-       "manifestSha256": "74c0f099ab8f02376faada62ed1f2aea74a515c7f382d5df6a2c11f5b6844d5d",
-       "bundle": {
-        "name": "gamegrab.lewdcorner.droidplugin.tar.xz",
-        "url": "https://github.com/gamegrab-sources/droidtop-plugin-lewdcorner/releases/download/v0.3.4-14/gamegrab.lewdcorner.droidplugin.tar.xz",
-        "size": 17184,
-        "sha256": "aad404a4955b012fac27e93a9331c4384a10f2e6454ff2e7aa1e1b2b46cf2e2e"
        }
       }
      ]
@@ -365,6 +365,18 @@
      "category": "sources",
      "releases": [
       {
+       "version": "0.6.0-15",
+       "stream": "stable",
+       "publishedAt": "2026-10-24T15:48:30Z",
+       "manifestSha256": "e9635f847f596e6a484b905fd27b0699f626f13290dfec490c1fced1b5870401",
+       "bundle": {
+        "name": "gamegrab.repacks.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-repacks/releases/download/v0.6.0-15/gamegrab.repacks.droidplugin.tar.xz",
+        "size": 18660,
+        "sha256": "2c321c70378978ea3f121f32e198d08fd2de520ed939f8a5dee3648f1386892f"
+       }
+      },
+      {
        "version": "0.5.0-14",
        "stream": "stable",
        "publishedAt": "2026-10-24T01:05:55Z",
@@ -410,18 +422,6 @@
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-repacks/releases/download/v0.3.1-9/gamegrab.repacks.droidplugin.tar.xz",
         "size": 17832,
         "sha256": "786d8ac81ff33ce5d81a957790dd4b74a14cf5dc7b3527b006bb2be6231331bd"
-       }
-      },
-      {
-       "version": "0.3.1-8",
-       "stream": "stable",
-       "publishedAt": "2026-10-15T15:14:35Z",
-       "manifestSha256": "e7be783b4fdcead1c880d7717a021ef530c04a811ce4ad480ce4b0410f208201",
-       "bundle": {
-        "name": "gamegrab.repacks.droidplugin.tar.xz",
-        "url": "https://github.com/gamegrab-sources/droidtop-plugin-repacks/releases/download/v0.3.1-8/gamegrab.repacks.droidplugin.tar.xz",
-        "size": 17828,
-        "sha256": "b25560ee84f1fe42426e0bfc363e48f124d8c8b2555b9301de1f5f34646d8a26"
        }
       }
      ]
