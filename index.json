@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "generatedAt": "2026-10-23T21:40:56Z",
+ "generatedAt": "2026-10-24T05:01:48Z",
  "catalog": {
   "id": "gamegrab-sources/catalog",
   "name": "gamegrab-sources",
@@ -161,6 +161,18 @@
      "category": "sources",
      "releases": [
       {
+       "version": "0.6.0-43",
+       "stream": "stable",
+       "publishedAt": "2026-10-24T01:02:29Z",
+       "manifestSha256": "0fc82271763c2126f428b6b870e1450f46e537e47916f9b502f098b7fee08e38",
+       "bundle": {
+        "name": "gamegrab.f95.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.6.0-43/gamegrab.f95.droidplugin.tar.xz",
+        "size": 1054660,
+        "sha256": "7665f98af91bf61b6512f477e39909e0654d68fef258003ff809f6753656c5e0"
+       }
+      },
+      {
        "version": "0.5.3-42",
        "stream": "stable",
        "publishedAt": "2026-10-23T19:00:43Z",
@@ -206,18 +218,6 @@
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.4.9-37/gamegrab.f95.droidplugin.tar.xz",
         "size": 1048920,
         "sha256": "fbebb43ed50c3106c081f914e8c38e5eb0da6865868305e99ff541b6d6ec4949"
-       }
-      },
-      {
-       "version": "0.4.8-36",
-       "stream": "stable",
-       "publishedAt": "2026-10-17T13:47:15Z",
-       "manifestSha256": "bd59efbe433ba1e8c15d97baeb6ae2edf06e71755ab1e1fbe550392bc9c18fbb",
-       "bundle": {
-        "name": "gamegrab.f95.droidplugin.tar.xz",
-        "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.4.8-36/gamegrab.f95.droidplugin.tar.xz",
-        "size": 1047500,
-        "sha256": "e1d54b6c90d70cdb54a52bd31aac37eb06d3cbcc83cf8b87750f77002774de0c"
        }
       }
      ]
@@ -297,6 +297,18 @@
      "category": "sources",
      "releases": [
       {
+       "version": "0.5.0-16",
+       "stream": "stable",
+       "publishedAt": "2026-10-24T01:06:00Z",
+       "manifestSha256": "f2b6810b9a682f49f298c783e6bcd453effba975958a46af58d75275b49a5943",
+       "bundle": {
+        "name": "gamegrab.nyaa.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-nyaa/releases/download/v0.5.0-16/gamegrab.nyaa.droidplugin.tar.xz",
+        "size": 13916,
+        "sha256": "b0f35dcc79dd21fc33b93db051a9e1f9591044bf806477b1e66d216c9099cbc2"
+       }
+      },
+      {
        "version": "0.4.1-15",
        "stream": "stable",
        "publishedAt": "2026-10-23T06:04:00Z",
@@ -343,18 +355,6 @@
         "size": 13284,
         "sha256": "1db0e55aa17c65294dbd4e78cc7b323d44c3417b9bed556a8b32356ef808e7e8"
        }
-      },
-      {
-       "version": "0.3.1-9",
-       "stream": "stable",
-       "publishedAt": "2026-10-15T15:14:03Z",
-       "manifestSha256": "75febc8b2eaa65940787f1b82598043adaf84a1c5e0ffc04f4a2d0bf81876b95",
-       "bundle": {
-        "name": "gamegrab.nyaa.droidplugin.tar.xz",
-        "url": "https://github.com/gamegrab-sources/droidtop-plugin-nyaa/releases/download/v0.3.1-9/gamegrab.nyaa.droidplugin.tar.xz",
-        "size": 13280,
-        "sha256": "76fb15e55b795b66f01034f626ec0cb19722812f85522e7447045a8028abdb06"
-       }
       }
      ]
     },
@@ -364,6 +364,18 @@
      "description": "Finds FitGirl, DODI and ElAmigos releases, checks your linked games for new versions, and downloads them or opens their torrents.",
      "category": "sources",
      "releases": [
+      {
+       "version": "0.5.0-14",
+       "stream": "stable",
+       "publishedAt": "2026-10-24T01:05:55Z",
+       "manifestSha256": "253ed74b5f9cb786108484d6d1dd440599f892ac2b0136deaa414c7149d26b1f",
+       "bundle": {
+        "name": "gamegrab.repacks.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-repacks/releases/download/v0.5.0-14/gamegrab.repacks.droidplugin.tar.xz",
+        "size": 18260,
+        "sha256": "e0c1ad6020647709065ab6734e4a591bc344c8d092edb898b00a02a22754813c"
+       }
+      },
       {
        "version": "0.4.1-13",
        "stream": "stable",
@@ -410,18 +422,6 @@
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-repacks/releases/download/v0.3.1-8/gamegrab.repacks.droidplugin.tar.xz",
         "size": 17828,
         "sha256": "b25560ee84f1fe42426e0bfc363e48f124d8c8b2555b9301de1f5f34646d8a26"
-       }
-      },
-      {
-       "version": "0.3.1-7",
-       "stream": "stable",
-       "publishedAt": "2026-10-15T15:13:59Z",
-       "manifestSha256": "a01219b7a2eefb35fab1394fe15aa699ba4b6d9ab730445a16d84e1684584f72",
-       "bundle": {
-        "name": "gamegrab.repacks.droidplugin.tar.xz",
-        "url": "https://github.com/gamegrab-sources/droidtop-plugin-repacks/releases/download/v0.3.1-7/gamegrab.repacks.droidplugin.tar.xz",
-        "size": 17824,
-        "sha256": "41cdbaa931a6b1d795cbe9f098b114e1a3b1eed35bb4b78628ffdab34044db4e"
        }
       }
      ]
