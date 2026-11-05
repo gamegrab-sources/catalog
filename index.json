@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "generatedAt": "2026-11-05T19:20:16Z",
+ "generatedAt": "2026-11-05T20:16:12Z",
  "catalog": {
   "id": "gamegrab-sources/catalog",
   "name": "gamegrab-sources",
@@ -466,6 +466,26 @@
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-main/gamegrab.romgi.main.droidplugin.tar.xz",
         "size": 5848068,
         "sha256": "dbd69a4e0a98d4085f8f5823751b82ff28644f5de30f595019a08c78b758a1f5"
+       }
+      }
+     ]
+    },
+    {
+     "id": "gamegrab.steamtools",
+     "label": "Steam tools",
+     "description": "Claims free Steam games, redeems keys and can show games as played, on the Steam account droidtop is signed in to. Unofficial, after ArchiSteamFarm's ideas.",
+     "category": "integrations",
+     "releases": [
+      {
+       "version": "0.1.1-6",
+       "stream": "stable",
+       "publishedAt": "2026-11-05T20:15:27Z",
+       "manifestSha256": "4a3156c16870a34cd51b974989228cdeb1d8e7f19e1e160c01aa4feb3b96c57d",
+       "bundle": {
+        "name": "gamegrab.steamtools.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-steam-tools/releases/download/v0.1.1-6/gamegrab.steamtools.droidplugin.tar.xz",
+        "size": 16892,
+        "sha256": "bbc3001e126a322a4d8943ca0c22c0da96610f7c3bc6a7198a638fe8481d7b33"
        }
       }
      ]
