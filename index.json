@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "generatedAt": "2026-11-05T02:01:08Z",
+ "generatedAt": "2026-11-05T19:20:16Z",
  "catalog": {
   "id": "gamegrab-sources/catalog",
   "name": "gamegrab-sources",
@@ -11,7 +11,13 @@
    "formatVersion": 1,
    "algorithm": "droidtop-chain-v1",
    "publicKeySpki": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAECbvwnVg3cj9XU4oBf0jA9MxK1QAoMNi9+RyuCqZFnaJk/6+nADE8uGJ5E4ihOhOIHG+E7J9vjTlg7mSLUe25NA==",
-   "keySha256": "538218f14080fb907aa44d3d0c1657c46e91fda7dd390a0ea75a8e465e55676d"
+   "keySha256": "538218f14080fb907aa44d3d0c1657c46e91fda7dd390a0ea75a8e465e55676d",
+   "superseded": [
+    {
+     "keySha256": "824af8929c27b467e37916b6016966f0579498656c3d537809fcc99123dda77d",
+     "by": "538218f14080fb907aa44d3d0c1657c46e91fda7dd390a0ea75a8e465e55676d"
+    }
+   ]
   }
  },
  "disclaimer": {
@@ -27,6 +33,12 @@
     "algorithm": "droidtop-chain-v1",
     "publicKeySpki": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAECbvwnVg3cj9XU4oBf0jA9MxK1QAoMNi9+RyuCqZFnaJk/6+nADE8uGJ5E4ihOhOIHG+E7J9vjTlg7mSLUe25NA==",
     "keySha256": "538218f14080fb907aa44d3d0c1657c46e91fda7dd390a0ea75a8e465e55676d",
+    "superseded": [
+     {
+      "keySha256": "824af8929c27b467e37916b6016966f0579498656c3d537809fcc99123dda77d",
+      "by": "538218f14080fb907aa44d3d0c1657c46e91fda7dd390a0ea75a8e465e55676d"
+     }
+    ],
     "origin": "gamegrab"
    },
    "plugins": [
