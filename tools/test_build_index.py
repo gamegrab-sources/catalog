@@ -45,6 +45,27 @@ def sample(config):
     }
 
 
+class InMemoryConfig:
+    def __init__(self, config):
+        self.text = json.dumps(config)
+
+    def read_text(self, encoding=None):
+        return self.text
+
+
+def valid_config(config):
+    """load_config's checks, on a config in memory."""
+    saved = build_index.CONFIG
+    build_index.CONFIG = InMemoryConfig(config)
+    try:
+        build_index.load_config()
+        return True
+    except SystemExit:
+        return False
+    finally:
+        build_index.CONFIG = saved
+
+
 def main():
     config = build_index.load_config()
     check(config["catalog"]["trust"] == "unofficial", "the catalog says it is unofficial")
@@ -68,6 +89,25 @@ def main():
         bad = copy.deepcopy(good)
         change(bad)
         check(build_index.check_document(bad, config) != [], what)
+
+    # Superseded markers (Droidtop/tracker#887): every old key points at the current root, from catalog.json.
+    marked = dict(config, superseded=["d" * 64, "a" * 64])
+    check(build_index.superseded_markers(marked, "a" * 64) == [{"keySha256": "d" * 64, "by": "a" * 64}],
+          "a superseded key points at the current root, and the current root is never marked")
+    check(build_index.superseded_markers(dict(config, superseded=[]), "a" * 64) == [], "no superseded keys, no markers")
+    with_markers = copy.deepcopy(good)
+    with_markers["origins"][0]["key"]["superseded"] = [{"keySha256": "d" * 64, "by": "a" * 64}]
+    check(build_index.check_document(with_markers, config) == [], "a marker pointing at the block's own key passes")
+    for what, marker in [
+        ("a marker pointing at another key is refused", {"keySha256": "d" * 64, "by": "e" * 64}),
+        ("a marker superseding the block's own key is refused", {"keySha256": "a" * 64, "by": "a" * 64}),
+        ("a marker with a malformed fingerprint is refused", {"keySha256": "D" * 64, "by": "a" * 64}),
+    ]:
+        bad = copy.deepcopy(good)
+        bad["origins"][0]["key"]["superseded"] = [marker]
+        check(build_index.check_document(bad, config) != [], what)
+    for superseded in (["D" * 64], ["d" * 64, "d" * 64], "d" * 64):
+        check(not valid_config(dict(config, superseded=superseded)), "catalog.json superseded " + repr(superseded)[:24] + " is refused")
 
     check(build_index.stream_of({"tag_name": "plugin-v1.5.0", "prerelease": False}) == "stable", "a release is stable")
     for tag in ("plugin-unstable", "plugin-build.42", "plugin-unstable-arm", "plugin-build-arm.7"):

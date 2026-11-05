@@ -18,5 +18,8 @@
     "gamegrab.romgi.ps3-license": "Retired 2026-10-14: this branch variant of romgi-bio is merged into gamegrab.romgi.main (romgi-bio), which carries the feature as an option. Install romgi-bio instead.",
     "gamegrab.romgi.self-hosted-db": "Retired 2026-10-14: this branch variant of romgi-bio is merged into gamegrab.romgi.main (romgi-bio), which carries the feature as an option. Install romgi-bio instead.",
     "gamegrab.romgi.dev": "Retired 2026-10-15: a build of the plugin-core wrapper branch, not an installable line. Install romgi-bio (gamegrab.romgi.main) instead."
-  }
+  },
+  "superseded": [
+    "824af8929c27b467e37916b6016966f0579498656c3d537809fcc99123dda77d"
+  ]
 }

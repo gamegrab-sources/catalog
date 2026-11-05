@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.4.0 (2026-11-05)
+
+- `catalog.json` `superseded`: roots this catalog used before. The index's root key blocks
+  (`catalog.key` and each origin's `key`) carry `"superseded": [{"keySha256": <old>, "by":
+  <current>}]`, so droidtop moves an origin approved under an old root to the current one
+  (Droidtop/tracker#887). Listed: the root replaced in the 2026-11-04 rotation,
+  824af8929c27b467e37916b6016966f0579498656c3d537809fcc99123dda77d, superseded by
+  538218f14080fb907aa44d3d0c1657c46e91fda7dd390a0ea75a8e465e55676d.
+
 ## 1.3.0 (2026-10-14)
 
 - `catalog.json` `retired`: plugin ids the index no longer lists, each with a note; a rebuilt

@@ -92,7 +92,10 @@ catalog that is not its own:
    "formatVersion": 1,
    "algorithm": "droidtop-chain-v1",
    "publicKeySpki": "<the root's public key, base64>",
-   "keySha256": "<hex SHA-256 of its DER>"
+   "keySha256": "<hex SHA-256 of its DER>",
+   "superseded": [                          // only when catalog.json lists a replaced key
+    { "keySha256": "<an earlier root's hex SHA-256>", "by": "<this key's keySha256>" }
+   ]
   }
  },
  "disclaimer": { "version": 1, "text": "<the text above>" },
@@ -126,6 +129,19 @@ catalog that is not its own:
 
 `catalog` and `disclaimer` are configured in `catalog.json`. Raising the disclaimer's `version`
 makes droidtop ask every user to accept the new text before it lists anything again.
+
+### Superseded keys
+
+`catalog.json` `superseded` lists the fingerprints (hex SHA-256 of the SPKI DER) of roots this
+catalog used before. Every root key block in the index, `catalog.key` and each origin's `key`,
+carries one marker per listed key, pointing at the current root: `{"keySha256": "<old>", "by":
+"<current>"}` (Droidtop/tracker#887). There are no dates and no chain. When the root changes again,
+add the replaced root's fingerprint, and every marker points at the new root on the next build.
+
+The markers are covered by the index signature. droidtop follows a marker only for an origin it
+trusts through this catalog: an origin approved under a superseded key moves to the key the marker
+names, the approval carries over, and the person is told the key changed. `--check` refuses a marker
+that does not point from another key at its own block's key.
 
 ## The root and the signature
 

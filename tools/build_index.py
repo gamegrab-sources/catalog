@@ -296,6 +296,9 @@ def load_config():
     retired = config.get("retired", {})
     if not isinstance(retired, dict) or not all(isinstance(k, str) and isinstance(v, str) and v.strip() for k, v in retired.items()):
         raise SystemExit("catalog.json: retired maps plugin ids to a note saying why")
+    superseded = config.get("superseded", [])
+    if not isinstance(superseded, list) or not all(isinstance(k, str) and HEX_64.fullmatch(k) for k in superseded)             or len(set(superseded)) != len(superseded):
+        raise SystemExit("catalog.json: superseded lists distinct lower-case SHA-256 key fingerprints")
     return config
 
 
@@ -306,7 +309,20 @@ def load_root(config):
     pem = ROOT_KEY.read_bytes()
     der = spki_der(pem)
     spki = base64.b64encode(der).decode("ascii")
-    return config["catalog"]["origin"], pem, {"formatVersion": 1, "algorithm": ALGORITHM, "publicKeySpki": spki, "keySha256": sha256_hex(der)}
+    current = sha256_hex(der)
+    block = {"formatVersion": 1, "algorithm": ALGORITHM, "publicKeySpki": spki, "keySha256": current}
+    markers = superseded_markers(config, current)
+    if markers:
+        block["superseded"] = markers
+    return config["catalog"]["origin"], pem, block
+
+
+def superseded_markers(config, current):
+    """catalog.json `superseded`: the keys this catalog used before, each marked as superseded by the current root
+    (Droidtop/tracker#887). The owner, 2026-11-05: "Every key is superceded by the current key", and only the source
+    that published the marker counts for it. So every marker names the root this index is built with, and a later
+    rotation only adds the replaced key's fingerprint here. The key block carries them, under the index signature."""
+    return [{"keySha256": old, "by": current} for old in config.get("superseded", []) if old != current]
 
 
 def catalog_block(config, root):
@@ -431,6 +447,7 @@ def check_document(document, config):
         problems.append("the catalog block differs from catalog.json")
     if ("key" in catalog) != ("origin" in catalog) or catalog.get("origin", config["catalog"]["origin"]) != config["catalog"]["origin"]:
         problems.append("the catalog block names its origin without its root key, or another origin")
+    problems += marker_problems(catalog.get("key", {}), "the catalog key")
     if document.get("disclaimer") != config["disclaimer"]:
         problems.append("the disclaimer differs from catalog.json")
     seen = set()
@@ -441,6 +458,7 @@ def check_document(document, config):
         key = origin.get("key", {})
         if key.get("origin") != name or key.get("algorithm") != ALGORITHM or not HEX_64.fullmatch(str(key.get("keySha256", ""))):
             problems.append("origin " + repr(name) + " has a malformed key block")
+        problems += marker_problems(key, "origin " + repr(name))
         for plugin in origin.get("plugins", []):
             plugin_id = plugin.get("id", "")
             if not plugin_id.startswith(name + ".") or plugin_id != plugin_id.lower() or plugin_id in seen:
@@ -457,6 +475,22 @@ def check_document(document, config):
                         or not HEX_64.fullmatch(str(bundle.get("sha256", ""))) \
                         or not str(bundle.get("url", "")).startswith("https://"):
                     problems.append("plugin " + repr(plugin_id) + " has a malformed release")
+    return problems
+
+
+def marker_problems(key, what):
+    """A key block's superseded markers each name another key and point at this block's own key (#887)."""
+    markers = key.get("superseded")
+    if markers is None:
+        return []
+    if not isinstance(markers, list) or not markers:
+        return [what + " has a malformed superseded list"]
+    problems = []
+    for marker in markers:
+        old = str(marker.get("keySha256", "")) if isinstance(marker, dict) else ""
+        by = str(marker.get("by", "")) if isinstance(marker, dict) else ""
+        if not HEX_64.fullmatch(old) or by != key.get("keySha256") or old == by:
+            problems.append(what + " has a superseded marker that does not point from another key to its own")
     return problems
 
 
