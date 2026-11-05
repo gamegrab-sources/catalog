@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "generatedAt": "2026-10-30T22:39:16Z",
+ "generatedAt": "2026-11-05T02:01:08Z",
  "catalog": {
   "id": "gamegrab-sources/catalog",
   "name": "gamegrab-sources",
@@ -10,8 +10,8 @@
   "key": {
    "formatVersion": 1,
    "algorithm": "droidtop-chain-v1",
-   "publicKeySpki": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE60BHn37Ouu4s6Vh0Pvlb4ZgWh0PLcvY5w1PypnTdA2s+O3iKVvI18782rnY9xe5DDhI0C6uDn4SqAXD4BPmsRA==",
-   "keySha256": "824af8929c27b467e37916b6016966f0579498656c3d537809fcc99123dda77d"
+   "publicKeySpki": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAECbvwnVg3cj9XU4oBf0jA9MxK1QAoMNi9+RyuCqZFnaJk/6+nADE8uGJ5E4ihOhOIHG+E7J9vjTlg7mSLUe25NA==",
+   "keySha256": "538218f14080fb907aa44d3d0c1657c46e91fda7dd390a0ea75a8e465e55676d"
   }
  },
  "disclaimer": {
@@ -25,8 +25,8 @@
    "key": {
     "formatVersion": 1,
     "algorithm": "droidtop-chain-v1",
-    "publicKeySpki": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE60BHn37Ouu4s6Vh0Pvlb4ZgWh0PLcvY5w1PypnTdA2s+O3iKVvI18782rnY9xe5DDhI0C6uDn4SqAXD4BPmsRA==",
-    "keySha256": "824af8929c27b467e37916b6016966f0579498656c3d537809fcc99123dda77d",
+    "publicKeySpki": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAECbvwnVg3cj9XU4oBf0jA9MxK1QAoMNi9+RyuCqZFnaJk/6+nADE8uGJ5E4ihOhOIHG+E7J9vjTlg7mSLUe25NA==",
+    "keySha256": "538218f14080fb907aa44d3d0c1657c46e91fda7dd390a0ea75a8e465e55676d",
     "origin": "gamegrab"
    },
    "plugins": [
@@ -44,8 +44,8 @@
        "bundle": {
         "name": "gamegrab.abandonware.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-abandonware/releases/download/v0.6.0-17/gamegrab.abandonware.droidplugin.tar.xz",
-        "size": 11580,
-        "sha256": "76e06f237eb95f4fe81db490131f29cb71a5db90ce17ab12c9ef8e1a95d550bb"
+        "size": 11564,
+        "sha256": "3c5aa1579e160553865ed2d29cd11fd3d21fc9bbe718d6da729369647ed398ae"
        }
       },
       {
@@ -56,8 +56,8 @@
        "bundle": {
         "name": "gamegrab.abandonware.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-abandonware/releases/download/v0.5.0-15/gamegrab.abandonware.droidplugin.tar.xz",
-        "size": 11324,
-        "sha256": "164e795e25823f633859b957bdeafcd6f2ba590486fa237b9c2e75b161716000"
+        "size": 11308,
+        "sha256": "0faa7d267265cff24220c35a700844f974b02144203734eb21cc77a1936801ae"
        }
       },
       {
@@ -68,8 +68,8 @@
        "bundle": {
         "name": "gamegrab.abandonware.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-abandonware/releases/download/v0.4.1-14/gamegrab.abandonware.droidplugin.tar.xz",
-        "size": 10988,
-        "sha256": "adb4a6a07654474b5d20f7d937f8414b6db0093eb5c350ff6fdb6395abf10aa6"
+        "size": 10980,
+        "sha256": "f0baaeb30fa9df735b282483efb4c05e4d1eb69f2e2c6a88a19037c83a5576fb"
        }
       },
       {
@@ -80,8 +80,8 @@
        "bundle": {
         "name": "gamegrab.abandonware.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-abandonware/releases/download/v0.3.2-12/gamegrab.abandonware.droidplugin.tar.xz",
-        "size": 10724,
-        "sha256": "44e3a17f93f912890ba6fbd4f82e4409fd512f1d1f1eda4e79725677ad606b75"
+        "size": 10716,
+        "sha256": "e95e2f9996c96ad15aa2763fe297f4177d78ee07be8512b5dbae14c9933ba557"
        }
       },
       {
@@ -92,8 +92,8 @@
        "bundle": {
         "name": "gamegrab.abandonware.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-abandonware/releases/download/v0.3.1-10/gamegrab.abandonware.droidplugin.tar.xz",
-        "size": 10704,
-        "sha256": "0075c0c3382717b15bea4afaaefb260321a7400daed27dc6e9735c816992f9da"
+        "size": 10700,
+        "sha256": "679bd03c9cb8da2b4428f1f76825d025ac5a7582d01c7c356f33e820a596afdd"
        }
       }
      ]
@@ -112,8 +112,8 @@
        "bundle": {
         "name": "gamegrab.bios.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-bios/releases/download/v0.3.3-12/gamegrab.bios.droidplugin.tar.xz",
-        "size": 44192,
-        "sha256": "1949e7a9968efc3212598b83b04d2892bd3654c432a0e8e093f366051c09d5a4"
+        "size": 44196,
+        "sha256": "1014cc03df815447df5495170f0ce70eb3c5e38cdd7be2dd2dff063f5c7a146f"
        }
       },
       {
@@ -124,8 +124,8 @@
        "bundle": {
         "name": "gamegrab.bios.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-bios/releases/download/v0.3.2-10/gamegrab.bios.droidplugin.tar.xz",
-        "size": 44188,
-        "sha256": "893d35c9055f1d8260c9b8d53052557b71f1d24c3a93ccb8846308589b4b8f6b"
+        "size": 44184,
+        "sha256": "b72fce6b99d0725d7e22642d1f8b825ec6642cbb445e5970ac8c9172c28e1b55"
        }
       },
       {
@@ -136,8 +136,8 @@
        "bundle": {
         "name": "gamegrab.bios.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-bios/releases/download/v0.3.2-9/gamegrab.bios.droidplugin.tar.xz",
-        "size": 44172,
-        "sha256": "b09d41b94b41c9a4f2c7f30816997546b11bb69ee33ac20b7a90ce095670c02d"
+        "size": 44180,
+        "sha256": "ff92abd40f7279ce8076f2d4ca218c6576ac9e3b67bec103634f713f34400ba0"
        }
       },
       {
@@ -148,8 +148,20 @@
        "bundle": {
         "name": "gamegrab.bios.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-bios/releases/download/v0.3.2-8/gamegrab.bios.droidplugin.tar.xz",
-        "size": 44192,
-        "sha256": "7d7a1d2a17261d85e80914de9f1740a5a816ec75735de08ba10c31f84d014c70"
+        "size": 44172,
+        "sha256": "72fbd5b6ce3b35d08e3b5aeea3d650222c473d7fca500cf5672f7acbd5f57d69"
+       }
+      },
+      {
+       "version": "0.3.2-6",
+       "stream": "stable",
+       "publishedAt": "2026-10-15T02:38:40Z",
+       "manifestSha256": "221ade64d2c2039686f8d6dd9dd7afcd06639cae1b93f69f0813c2d5eec1cd32",
+       "bundle": {
+        "name": "gamegrab.bios.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-bios/releases/download/v0.3.2-6/gamegrab.bios.droidplugin.tar.xz",
+        "size": 44172,
+        "sha256": "9f0b24bc37dec444a40ad820d4500b591723618f76cde6e961ac50dc0864356e"
        }
       }
      ]
@@ -161,6 +173,30 @@
      "category": "sources",
      "releases": [
       {
+       "version": "0.8.1-62",
+       "stream": "stable",
+       "publishedAt": "2026-11-05T01:26:15Z",
+       "manifestSha256": "e78a346c9f08ecd04772df597acf113a9af7779e0f9e4ff773f4ea16407a43d9",
+       "bundle": {
+        "name": "gamegrab.f95.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.8.1-62/gamegrab.f95.droidplugin.tar.xz",
+        "size": 1072960,
+        "sha256": "631d3722449cfbd4251a974645ba9e0dcf9473c50ecf2ed1e14feb93d0f6c35c"
+       }
+      },
+      {
+       "version": "0.7.3-54",
+       "stream": "stable",
+       "publishedAt": "2026-11-04T21:01:40Z",
+       "manifestSha256": "50f45cc25254e59452d3b6e6cdf04912e31df5cb69d6661bed4a9c2d2fa0d776",
+       "bundle": {
+        "name": "gamegrab.f95.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.7.3-54/gamegrab.f95.droidplugin.tar.xz",
+        "size": 1063212,
+        "sha256": "5a1a3a065464ae236d3fce2accd649987efe6a1a5d8805b4728725d9ae4ec314"
+       }
+      },
+      {
        "version": "0.7.2-52",
        "stream": "stable",
        "publishedAt": "2026-10-30T18:44:27Z",
@@ -168,8 +204,8 @@
        "bundle": {
         "name": "gamegrab.f95.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.7.2-52/gamegrab.f95.droidplugin.tar.xz",
-        "size": 1061332,
-        "sha256": "7ae95d467ed3c72af36eb1d6a9b9eff190ab5427e6daf14945feb820cf6b8784"
+        "size": 1061360,
+        "sha256": "41564887259d90e06b6eec9786415aa9e201f5eb72745039b7cc3b759f2a035c"
        }
       },
       {
@@ -180,8 +216,8 @@
        "bundle": {
         "name": "gamegrab.f95.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.7.1-50/gamegrab.f95.droidplugin.tar.xz",
-        "size": 1057712,
-        "sha256": "af517c640fedca09b88bc1868409ad90c7966f0857f837469cc881bac0e7f52c"
+        "size": 1055224,
+        "sha256": "db5724f1523f236ca4ad62f6484594aa833a1b575e5e5cc3d350691d3bc3345e"
        }
       },
       {
@@ -192,32 +228,8 @@
        "bundle": {
         "name": "gamegrab.f95.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.7.0-48/gamegrab.f95.droidplugin.tar.xz",
-        "size": 1055876,
-        "sha256": "d83bde0b94d7ac3a0e597b47f7bdd452660e718698a5d2e7c2a9eadd3b4517b1"
-       }
-      },
-      {
-       "version": "0.6.1-46",
-       "stream": "stable",
-       "publishedAt": "2026-10-28T21:38:00Z",
-       "manifestSha256": "0faf03458203f6d8efa7a5f4644cd6d5611160925cc039bdffeff46c6b740842",
-       "bundle": {
-        "name": "gamegrab.f95.droidplugin.tar.xz",
-        "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.6.1-46/gamegrab.f95.droidplugin.tar.xz",
-        "size": 1054112,
-        "sha256": "d3118d8ac582ae1c2879b89b12359f5063b9bed8ddc8e9f71bacac130c7ff59b"
-       }
-      },
-      {
-       "version": "0.6.0-43",
-       "stream": "stable",
-       "publishedAt": "2026-10-24T01:02:29Z",
-       "manifestSha256": "0fc82271763c2126f428b6b870e1450f46e537e47916f9b502f098b7fee08e38",
-       "bundle": {
-        "name": "gamegrab.f95.droidplugin.tar.xz",
-        "url": "https://github.com/gamegrab-sources/droidtop-plugin-f95/releases/download/v0.6.0-43/gamegrab.f95.droidplugin.tar.xz",
-        "size": 1054660,
-        "sha256": "7665f98af91bf61b6512f477e39909e0654d68fef258003ff809f6753656c5e0"
+        "size": 1055940,
+        "sha256": "8757f351b8adc762e2321109062be0206036f808d659aee7fe2fea0e56ce01b7"
        }
       }
      ]
@@ -236,8 +248,8 @@
        "bundle": {
         "name": "gamegrab.lewdcorner.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-lewdcorner/releases/download/v0.5.0-20/gamegrab.lewdcorner.droidplugin.tar.xz",
-        "size": 18908,
-        "sha256": "a12e1d45b648bd00ffe24c3d98ca218bbeaf84d2708627dd8dc217bdc7c11533"
+        "size": 18916,
+        "sha256": "60a294d3e5303b13ea1f3313626d3b13b0857db092792e690b90330ca3d925eb"
        }
       },
       {
@@ -249,7 +261,7 @@
         "name": "gamegrab.lewdcorner.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-lewdcorner/releases/download/v0.4.3-19/gamegrab.lewdcorner.droidplugin.tar.xz",
         "size": 18324,
-        "sha256": "c7788e129eea5287371856a7db466b067d9accad44852d289f10f0d72a4e97b8"
+        "sha256": "5a84c9eb7962bcd78552cd2bd28e0a8f75b982bbdcdf96524d797407201cd1c9"
        }
       },
       {
@@ -260,8 +272,8 @@
        "bundle": {
         "name": "gamegrab.lewdcorner.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-lewdcorner/releases/download/v0.4.2-18/gamegrab.lewdcorner.droidplugin.tar.xz",
-        "size": 18148,
-        "sha256": "9cd6beb6664b4291a33f1ca101746c1db22d76fae2e2377d22e9fa2628232874"
+        "size": 18156,
+        "sha256": "00fa147371c6175aa24db301583c5905098deb347f67ed6630713f19cd581dae"
        }
       },
       {
@@ -272,8 +284,8 @@
        "bundle": {
         "name": "gamegrab.lewdcorner.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-lewdcorner/releases/download/v0.4.1-17/gamegrab.lewdcorner.droidplugin.tar.xz",
-        "size": 17440,
-        "sha256": "dc34e3d44062bdca519fc9a028c05bfcaec8e868099580d06c3a05cdae7c482f"
+        "size": 17432,
+        "sha256": "63f818be3ca061d563393e1acfa738a39c42eeceff87217719d09aaaff4ca0df"
        }
       },
       {
@@ -284,8 +296,8 @@
        "bundle": {
         "name": "gamegrab.lewdcorner.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-lewdcorner/releases/download/v0.3.5-15/gamegrab.lewdcorner.droidplugin.tar.xz",
-        "size": 16920,
-        "sha256": "8f7bd27dca70c3e34ce89ef6a1510617218d36955ae2368ceb10574e6b12953e"
+        "size": 16916,
+        "sha256": "b273286123cd057b40a1c3e795c297f91503ad0e5104012fe72d605f6d5174c4"
        }
       }
      ]
@@ -304,8 +316,8 @@
        "bundle": {
         "name": "gamegrab.nyaa.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-nyaa/releases/download/v0.6.0-18/gamegrab.nyaa.droidplugin.tar.xz",
-        "size": 14172,
-        "sha256": "2421e301967ebc8f91ee55b3ee4cdcc477b8355536a00a67561f58637b2b4715"
+        "size": 14168,
+        "sha256": "745ba0fdfe0e8cc1989d56fa8776d872a04684e7e77dd2dc49f770d0653c0260"
        }
       },
       {
@@ -316,8 +328,8 @@
        "bundle": {
         "name": "gamegrab.nyaa.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-nyaa/releases/download/v0.5.0-16/gamegrab.nyaa.droidplugin.tar.xz",
-        "size": 13916,
-        "sha256": "b0f35dcc79dd21fc33b93db051a9e1f9591044bf806477b1e66d216c9099cbc2"
+        "size": 13908,
+        "sha256": "f89e2ad36d78518ff6ba710b2844f18515ee95b6736bd78d9c0bad3a75653b86"
        }
       },
       {
@@ -328,8 +340,8 @@
        "bundle": {
         "name": "gamegrab.nyaa.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-nyaa/releases/download/v0.4.1-15/gamegrab.nyaa.droidplugin.tar.xz",
-        "size": 13484,
-        "sha256": "e331b84199afba8443f9d1398068c2c3fdcfbb25b3d8261704af9853a6899afe"
+        "size": 13488,
+        "sha256": "21b6cffe7adea0c50da1ed853cc306a2c6e0c55161f414ea8ac474f6b0f95d81"
        }
       },
       {
@@ -341,7 +353,7 @@
         "name": "gamegrab.nyaa.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-nyaa/releases/download/v0.3.2-13/gamegrab.nyaa.droidplugin.tar.xz",
         "size": 13296,
-        "sha256": "d006d3e75ff5a96dafba468601a17f59bd7df7dc2dc5edfb0d9f583c46096a72"
+        "sha256": "29b7684ce657a9ad9f2ae5c0984b36da8d9cda6aa314843152e6c6a915e3aa67"
        }
       },
       {
@@ -352,8 +364,8 @@
        "bundle": {
         "name": "gamegrab.nyaa.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-nyaa/releases/download/v0.3.1-11/gamegrab.nyaa.droidplugin.tar.xz",
-        "size": 13296,
-        "sha256": "f245c04a016fed7d63a20f7fe6042e07ab3b235ac185232cba9ed10d859cca83"
+        "size": 13288,
+        "sha256": "053852c2b2c162954483329eb6288a497a121844c525522291c5274446e532ae"
        }
       }
      ]
@@ -373,7 +385,7 @@
         "name": "gamegrab.repacks.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-repacks/releases/download/v0.7.0-17/gamegrab.repacks.droidplugin.tar.xz",
         "size": 19332,
-        "sha256": "4dbc7cb90b7a8a5c8862d1ce271f83b21205298eaa41050f06dec5b19d5c059c"
+        "sha256": "07bc72f04a4a4d8d5e26b74b216bd0f6bd2b5fba3187cfdee63741523b564a48"
        }
       },
       {
@@ -384,8 +396,8 @@
        "bundle": {
         "name": "gamegrab.repacks.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-repacks/releases/download/v0.6.0-15/gamegrab.repacks.droidplugin.tar.xz",
-        "size": 18660,
-        "sha256": "2c321c70378978ea3f121f32e198d08fd2de520ed939f8a5dee3648f1386892f"
+        "size": 18648,
+        "sha256": "8df6c49a24fab946f840d3b3127b54035113d674dd8a957f109148ff59f6c957"
        }
       },
       {
@@ -396,8 +408,8 @@
        "bundle": {
         "name": "gamegrab.repacks.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-repacks/releases/download/v0.5.0-14/gamegrab.repacks.droidplugin.tar.xz",
-        "size": 18260,
-        "sha256": "e0c1ad6020647709065ab6734e4a591bc344c8d092edb898b00a02a22754813c"
+        "size": 18264,
+        "sha256": "d909e1d60d6e30cadcc49e866d0ee299b7d44badfa0f3823ae461cb9851d9c46"
        }
       },
       {
@@ -408,8 +420,8 @@
        "bundle": {
         "name": "gamegrab.repacks.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-repacks/releases/download/v0.4.1-13/gamegrab.repacks.droidplugin.tar.xz",
-        "size": 18008,
-        "sha256": "aeb17469168194ccf77cea54cc6f4543b8e84a5769990d0316e3dc775aa6d188"
+        "size": 18020,
+        "sha256": "0893134be471e27794f4c8275b181907241492a85aa73fabca955f33c1b4d544"
        }
       },
       {
@@ -420,8 +432,8 @@
        "bundle": {
         "name": "gamegrab.repacks.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-repacks/releases/download/v0.3.2-11/gamegrab.repacks.droidplugin.tar.xz",
-        "size": 17844,
-        "sha256": "59eb48398e420f8dc4733e8b7a14051933ff1f1520ec290a1d50ccfa28287c29"
+        "size": 17848,
+        "sha256": "6b49ef73e69fb86b419d80b3197ff3a42dce1c67c655a54731f6172c12534c3c"
        }
       }
      ]
@@ -440,8 +452,8 @@
        "bundle": {
         "name": "gamegrab.romgi.main.droidplugin.tar.xz",
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-romgi/releases/download/build-plugin-main/gamegrab.romgi.main.droidplugin.tar.xz",
-        "size": 5844076,
-        "sha256": "67d90cac2eef6bb37d8f39487626ddb4477eb568162fdfa234263f20de3be55f"
+        "size": 5848068,
+        "sha256": "dbd69a4e0a98d4085f8f5823751b82ff28644f5de30f595019a08c78b758a1f5"
        }
       }
      ]
