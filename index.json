@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "generatedAt": "2026-11-11T07:08:15Z",
+ "generatedAt": "2026-11-12T20:26:48Z",
  "catalog": {
   "id": "gamegrab-sources/catalog",
   "name": "gamegrab-sources",
@@ -49,6 +49,18 @@
      "category": "sources",
      "releases": [
       {
+       "version": "0.7.0-24",
+       "stream": "stable",
+       "publishedAt": "2026-11-12T18:03:16Z",
+       "manifestSha256": "73de62cd266650523a69c6a403f0c18706f4cd77ba1add1f1082f064343cdb8d",
+       "bundle": {
+        "name": "gamegrab.abandonware.droidplugin.tar.xz",
+        "url": "https://github.com/gamegrab-sources/droidtop-plugin-abandonware/releases/download/v0.7.0-24/gamegrab.abandonware.droidplugin.tar.xz",
+        "size": 12164,
+        "sha256": "886937cbca8b3519a80fb9016f9df07345812437622a071f9791fcfbbe82d8d8"
+       }
+      },
+      {
        "version": "0.6.0-22",
        "stream": "stable",
        "publishedAt": "2026-11-05T20:22:19Z",
@@ -94,18 +106,6 @@
         "url": "https://github.com/gamegrab-sources/droidtop-plugin-abandonware/releases/download/v0.4.1-14/gamegrab.abandonware.droidplugin.tar.xz",
         "size": 10980,
         "sha256": "f0baaeb30fa9df735b282483efb4c05e4d1eb69f2e2c6a88a19037c83a5576fb"
-       }
-      },
-      {
-       "version": "0.3.2-12",
-       "stream": "stable",
-       "publishedAt": "2026-10-16T20:44:05Z",
-       "manifestSha256": "d7ca96ca453282a2df3d148e2b30abf7bd9d356c77880df3d1756c10a9f659b5",
-       "bundle": {
-        "name": "gamegrab.abandonware.droidplugin.tar.xz",
-        "url": "https://github.com/gamegrab-sources/droidtop-plugin-abandonware/releases/download/v0.3.2-12/gamegrab.abandonware.droidplugin.tar.xz",
-        "size": 10716,
-        "sha256": "e95e2f9996c96ad15aa2763fe297f4177d78ee07be8512b5dbae14c9933ba557"
        }
       }
      ]
